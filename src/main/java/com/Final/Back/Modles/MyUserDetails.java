@@ -7,7 +7,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class MyUserDetails implements UserDetails {
     private String username;
@@ -15,14 +14,18 @@ public class MyUserDetails implements UserDetails {
     private boolean enabled;
     private List<GrantedAuthority> authorities;
 
-    public MyUserDetails(Authentification user) {
+    public MyUserDetails(Profile user) {
         this.username = user.getUsername();
         this.password = user.getPassword();
         this.enabled = user.getIsEnabled();
-        if (user.getIsAdmin()) {
-            this.authorities = Collections.singletonList(new SimpleGrantedAuthority("ROLE_ADMINISTRATOR"));
+
+        // Assuming that user is associated with only one role
+        Role role = user.getRole();
+        if (role != null) {
+            this.authorities = Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + role.getRoleName().toUpperCase()));
         } else {
-            this.authorities = Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + user.getUser().getClass().getSimpleName().toUpperCase()));
+            // Handle the case where user does not have a role assigned
+            this.authorities = Collections.emptyList();
         }
     }
 
@@ -45,10 +48,12 @@ public class MyUserDetails implements UserDetails {
     public boolean isAccountNonExpired() {
         return true;
     }
+
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
+
     @Override
     public boolean isCredentialsNonExpired() {
         return true;

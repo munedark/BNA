@@ -1,9 +1,9 @@
 package com.Final.Back.Services.ServImpl;
 
-import com.Final.Back.Modles.Agent;
-import com.Final.Back.Modles.Authentification;
+import com.Final.Back.Modles.AgentBna;
+import com.Final.Back.Modles.Profile;
 import com.Final.Back.Repository.AgentRepo;
-import com.Final.Back.Repository.AuthRepo;
+import com.Final.Back.Repository.ProfileRepo;
 import com.Final.Back.Services.AgentServ;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,27 +12,27 @@ import javax.transaction.Transactional;
 @Service
 public class AgentServImpl implements AgentServ {
     @Autowired
-    AuthRepo authRepo;
+    ProfileRepo profileRepo;
     @Autowired
     AgentRepo agentRepo;
     @Transactional
-    public Agent addAgent(Agent u , Authentification a) {
-        Agent user = new Agent();
-        user.setNom(u.getNom());
-        user.setPrenom(u.getPrenom());
-        user.setEmail(u.getEmail());
-        user.setNumtele(u.getNumtele());
-        user.setMatriculeAgent(u.getMatriculeAgent());
+    public AgentBna addAgent(AgentBna agentBna , Profile profile) {
+        AgentBna user = new AgentBna();
+        user.setNom(agentBna.getNom());
+        user.setPrenom(agentBna.getPrenom());
+        user.setEmail(agentBna.getEmail());
+        user.setNumtele(agentBna.getNumtele());
+        user.setMatricule(agentBna.getMatricule());
 
-        Authentification account = new Authentification();
-        account.setUsername(a.getUsername());
-        account.setPassword(a.getPassword());
-        account.setIsAdmin(false);
+        Profile account = new Profile();
+        account.setUsername(profile.getUsername());
+        account.setPassword(profile.getPassword());
         account.setIsEnabled(true);
         account.setUser(user);
+        account.setRole(profile.getRole());
 
 
-        authRepo.save(account);
+        profileRepo.save(account);
         return agentRepo.save(user);
     }
 

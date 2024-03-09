@@ -10,7 +10,7 @@ import javax.persistence.*;
 @RequiredArgsConstructor
 @ToString
 @Entity
-public class Authentification {
+public class Profile {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "id_Sequence")
     @SequenceGenerator(name = "id_Sequence", sequenceName = "ID_SEQ")
@@ -18,10 +18,13 @@ public class Authentification {
     private Long id;
     private String username;
     private String password;
-    private Boolean isAdmin;
     private Boolean isEnabled;
+
     @OneToOne
     @JoinColumn(name = "user_id")
-    private Utilisateur user;
+    private Personne user;
 
+    @OneToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
 }

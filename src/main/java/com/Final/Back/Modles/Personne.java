@@ -4,8 +4,6 @@ import javax.persistence.*;
 
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
@@ -14,7 +12,7 @@ import java.util.List;
 @Entity
 @Table(name = "Utilisateur")
 
-public class Utilisateur {
+public class Personne {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "id_Sequence")
     @SequenceGenerator(name = "id_Sequence", sequenceName = "ID_SEQ")

@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -43,8 +44,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/authenticate").permitAll()
-                .antMatchers("/admin/**").hasRole("ADMINISTRATOR")
-                .antMatchers("/agent/**").hasRole("AGENT")
+                .antMatchers("/admin/**").hasRole("ADMINISTRATEUR")
+                .antMatchers("/agent/**").hasRole("GESTIONNAIRE")
                 .antMatchers("/validateur/**").hasRole("VALIDATEUR")
                 .antMatchers("/client/**").hasRole("CLIENT")
                 .anyRequest().authenticated().and().

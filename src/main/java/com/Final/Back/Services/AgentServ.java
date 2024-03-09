@@ -1,8 +1,8 @@
 package com.Final.Back.Services;
 
-import com.Final.Back.Modles.Agent;
-import com.Final.Back.Modles.Authentification;
+import com.Final.Back.Modles.AgentBna;
+import com.Final.Back.Modles.Profile;
 
 public interface AgentServ {
-    public Agent addAgent(Agent u , Authentification a);
+    public AgentBna addAgent(AgentBna u , Profile a);
 }
