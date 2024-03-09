@@ -6,6 +6,7 @@ import com.Final.Back.Repository.ClientRepo;
 import com.Final.Back.Repository.ProfileRepo;
 import com.Final.Back.Services.ClientServ;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +18,10 @@ public class ClientServImpl implements ClientServ {
 
     @Autowired
     private ClientRepo clientRepo;
+
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Transactional
     public Client addClient(Client client, Profile profile) {
@@ -30,7 +35,7 @@ public class ClientServImpl implements ClientServ {
 
         Profile account = new Profile();
         account.setUsername(profile.getUsername());
-        account.setPassword(profile.getPassword());
+        account.setPassword(passwordEncoder.encode(profile.getPassword()));
         account.setIsEnabled(true);
         account.setUser(user);
         account.setRole(profile.getRole());

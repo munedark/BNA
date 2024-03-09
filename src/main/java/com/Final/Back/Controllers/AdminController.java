@@ -45,4 +45,27 @@ public class AdminController {
     public Role addRole(@RequestBody Role role) {
         return roleServ.addRole(role);
     }
+
+    @PutMapping("/modifyAgent/{username}")
+    public void modifyAgent(@PathVariable String username, @RequestBody AuthADto authADto) {
+        AgentBna agentBna = authADto.getAgent();
+        Profile profile = authADto.getProfile();
+        agentServ.modifyAgent(username, agentBna, profile);
+    }
+
+    @GetMapping("/showAgentByUsername/{username}")
+    public AgentBna showAgentByUsername(@PathVariable String username) {
+        return agentServ.showAgentByUsername(username);
+    }
+
+    @GetMapping("/showAllAgents")
+    public Iterable<AgentBna> showAllAgents() {
+        return agentServ.showAllAgents();
+    }
+
+    @DeleteMapping("/deleteAgent/{username}")
+    public void deleteAgent(@PathVariable String username) {
+        agentServ.deleteAgent(username);
+    }
+
 }

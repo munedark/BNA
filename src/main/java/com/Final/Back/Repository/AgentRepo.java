@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface AgentRepo extends JpaRepository<AgentBna,Long> {
     @Override
     AgentBna save(AgentBna agentBna);
+
 }
