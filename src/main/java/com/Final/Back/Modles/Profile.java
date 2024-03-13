@@ -10,6 +10,7 @@ import javax.persistence.*;
 @RequiredArgsConstructor
 @ToString
 @Entity
+@Table(name = "Profile")
 public class Profile {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "id_Sequence")
