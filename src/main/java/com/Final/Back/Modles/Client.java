@@ -2,8 +2,12 @@ package com.Final.Back.Modles;
 
 import lombok.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -13,4 +17,6 @@ import javax.persistence.Entity;
 public class Client extends Personne {
     @Column(unique = true)
     String matriculeClient;
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    private List<CompteBancaire> comptesBancaires;
 }

@@ -19,7 +19,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    
+
     @Autowired
     private JwtRequestFilter   jwtRequestFilter;
     @Autowired
@@ -47,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable()
-                .cors().and() // Enable CORS
+                .cors().and()
                 .authorizeRequests()
                 .antMatchers("/authenticate").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMINISTRATEUR")

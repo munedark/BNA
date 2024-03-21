@@ -17,8 +17,11 @@ public class Profile {
     @SequenceGenerator(name = "id_Sequence", sequenceName = "ID_SEQ")
     @Column(name="id",nullable=false,unique=true)
     private Long id;
+    @Column(name = "username")
     private String username;
+    @Column(name = "password")
     private String password;
+    @Column(name = "isEnabled")
     private Boolean isEnabled;
 
     @OneToOne

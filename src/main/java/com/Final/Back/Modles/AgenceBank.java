@@ -3,6 +3,8 @@ package com.Final.Back.Modles;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -18,5 +20,10 @@ public class AgenceBank {
     private Long idAgence;
     @Column(name = "emplacement")
     private String emplacement;
+    @OneToMany(mappedBy = "agenceBank", cascade = CascadeType.ALL)
+    private List<CompteBancaire> comptesBancaires;
+    @ManyToOne
+    @JoinColumn(name = "agence_bank_id", referencedColumnName = "id")
+    private AgenceBank agenceBank;
 
 }
