@@ -2,12 +2,10 @@ package com.Final.Back.Controllers;
 
 import com.Final.Back.Dto.AuthADto;
 import com.Final.Back.Dto.AuthCDto;
-import com.Final.Back.Modles.AgentBna;
-import com.Final.Back.Modles.Profile;
-import com.Final.Back.Modles.Client;
-import com.Final.Back.Modles.Role;
+import com.Final.Back.Modles.*;
 import com.Final.Back.Services.AgentServ;
 import com.Final.Back.Services.ClientServ;
+import com.Final.Back.Services.CompteBancaireServ;
 import com.Final.Back.Services.RoleServ;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -23,6 +21,8 @@ public class AdminController {
     private ClientServ clientServ;
     @Autowired
     private RoleServ roleServ;
+    @Autowired
+    private CompteBancaireServ compteBancaireServ;
 
 
 
@@ -67,6 +67,11 @@ public class AdminController {
     @DeleteMapping("/deleteAgent/{username}")
     public void deleteAgent(@PathVariable String username) {
         agentServ.deleteAgent(username);
+    }
+
+    @PostMapping("/addCompteBancaire")
+    public CompteBancaire addCompteBancaire(CompteBancaire compteBancaire){
+        return compteBancaireServ.addCompteBancaire(compteBancaire);
     }
 
 }

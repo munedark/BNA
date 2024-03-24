@@ -37,7 +37,7 @@ public class ClientServImpl implements ClientServ {
         account.setUsername(profile.getUsername());
         account.setPassword(passwordEncoder.encode(profile.getPassword()));
         account.setIsEnabled(true);
-        account.setUser(user);
+        account.setPersonne(user);
         account.setRole(profile.getRole());
 
         profileRepo.save(account);

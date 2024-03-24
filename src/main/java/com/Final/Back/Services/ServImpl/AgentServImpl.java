@@ -33,7 +33,7 @@ public class AgentServImpl implements AgentServ {
         account.setUsername(profile.getUsername());
         account.setPassword(passwordEncoder.encode(profile.getPassword()));
         account.setIsEnabled(true);
-        account.setUser(user);
+        account.setPersonne(user);
         account.setRole(profile.getRole());
 
 
@@ -45,7 +45,7 @@ public class AgentServImpl implements AgentServ {
     public void deleteAgent(String username) {
         Profile profile = profileRepo.findByUsername(username).orElse(null);
         if (profile != null) {
-            Personne user = profile.getUser();
+            Personne user = profile.getPersonne();
             if (user instanceof AgentBna) {
                 AgentBna agent = (AgentBna) user;
                 agentRepo.delete(agent);
@@ -58,7 +58,7 @@ public class AgentServImpl implements AgentServ {
     public void modifyAgent(String username, AgentBna agentBna, Profile profile) {
         Profile profileToUpdate = profileRepo.findByUsername(username).orElse(null);
         if (profileToUpdate != null) {
-            Personne user = profileToUpdate.getUser();
+            Personne user = profileToUpdate.getPersonne();
             if (user instanceof AgentBna) {
                 AgentBna agent = (AgentBna) user;
                 agent.setNom(agentBna.getNom());
@@ -71,7 +71,7 @@ public class AgentServImpl implements AgentServ {
             profileToUpdate.setUsername(profile.getUsername());
             profileToUpdate.setPassword(passwordEncoder.encode(profile.getPassword()));
             profileToUpdate.setIsEnabled(true);
-            profileToUpdate.setUser(user);
+            profileToUpdate.setPersonne(user);
             profileToUpdate.setRole(profile.getRole());
             profileRepo.save(profileToUpdate);
         }
@@ -81,7 +81,7 @@ public class AgentServImpl implements AgentServ {
     public AgentBna showAgentByUsername(String username) {
         Profile profile = profileRepo.findByUsername(username).orElse(null);
         if (profile != null) {
-            Personne user = profile.getUser();
+            Personne user = profile.getPersonne();
             if (user instanceof AgentBna) {
                 return (AgentBna) user;
             }

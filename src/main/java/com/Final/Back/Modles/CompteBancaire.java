@@ -27,7 +27,7 @@ public class CompteBancaire {
     @JoinColumn(name = "agence_bank_id", referencedColumnName = "idAgence")
     private AgenceBank agenceBank;
     @ManyToOne
-    @JoinColumn(name = "client_id")
+    @JoinColumn(name = "id")
     private Client client;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Risque> risque;

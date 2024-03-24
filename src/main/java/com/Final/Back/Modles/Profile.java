@@ -25,8 +25,8 @@ public class Profile {
     private Boolean isEnabled;
 
     @OneToOne
-    @JoinColumn(name = "user_id")
-    private Personne user;
+    @JoinColumn(name = "personne_id")
+    private Personne personne;
 
     @OneToOne
     @JoinColumn(name = "role_id")
