@@ -10,7 +10,7 @@ import lombok.*;
 @RequiredArgsConstructor
 @ToString
 @Entity
-@Table(name = "Utilisateur")
+@Table(name = "Personne")
 
 public class Personne {
     @Id

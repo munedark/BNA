@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -14,10 +15,8 @@ import java.util.Date;
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class DossierDebiteur {
-    @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "dossier_id_Sequence")
-    @SequenceGenerator(name = "dossier_id_Sequence", sequenceName = "DOSSIER_ID_SEQ")
-    private Long id;
+    @EmbeddedId
+    private DossierId dossierId;
     @Column(name = "soldeRecouvrement")
     private float soldeRecouvrement;
     @Column(name = "etat_CTX")
@@ -28,4 +27,9 @@ public class DossierDebiteur {
     @OneToOne
     @JoinColumn(name = "compte_bancaire_id", referencedColumnName = "numCompte", unique = true)
     private CompteBancaire compteBancaire;
+    @OneToOne
+    @JoinColumn(name = "Jounral")
+    private JournalDebiteur journalDebiteur;
+    @OneToMany
+    private List<Risque> risque;
 }

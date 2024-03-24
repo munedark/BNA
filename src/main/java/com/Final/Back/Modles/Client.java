@@ -15,8 +15,7 @@ import java.util.List;
 @ToString
 @Entity
 public class Client extends Personne {
-    @Column(unique = true)
-    String matriculeClient;
+
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<CompteBancaire> comptesBancaires;
 }

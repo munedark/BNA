@@ -31,7 +31,7 @@ public class ClientServImpl implements ClientServ {
         user.setPrenom(client.getPrenom());
         user.setEmail(client.getEmail());
         user.setNumtele(client.getNumtele());
-        user.setMatriculeClient(client.getMatriculeClient());
+
 
         Profile account = new Profile();
         account.setUsername(profile.getUsername());

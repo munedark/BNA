@@ -27,7 +27,7 @@ public class AgentServImpl implements AgentServ {
         user.setPrenom(agentBna.getPrenom());
         user.setEmail(agentBna.getEmail());
         user.setNumtele(agentBna.getNumtele());
-        user.setMatricule(agentBna.getMatricule());
+
 
         Profile account = new Profile();
         account.setUsername(profile.getUsername());
@@ -65,7 +65,7 @@ public class AgentServImpl implements AgentServ {
                 agent.setPrenom(agentBna.getPrenom());
                 agent.setEmail(agentBna.getEmail());
                 agent.setNumtele(agentBna.getNumtele());
-                agent.setMatricule(agentBna.getMatricule());
+
             }
 
             profileToUpdate.setUsername(profile.getUsername());
