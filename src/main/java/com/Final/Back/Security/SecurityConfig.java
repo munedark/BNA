@@ -1,8 +1,7 @@
 package com.Final.Back.Security;
 
-import com.Final.Back.Services.ServImpl.MyUserDetailsService;
+import com.Final.Back.Services.ServImpl.Authentifcation.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,7 +13,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 @EnableWebSecurity
 @Configuration
@@ -51,8 +49,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/authenticate").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMINISTRATEUR")
-                .antMatchers("/agent/**").hasRole("GESTIONNAIRE")
+                .antMatchers("/gestionnaire/**").hasRole("GESTIONNAIRE")
                 .antMatchers("/validateur/**").hasRole("VALIDATEUR")
+                .antMatchers("/agent").hasAnyRole("ADMINISTARATEUR","GESTIONNAIRE","VALIDATEUR")
                 .antMatchers("/client/**").hasRole("CLIENT")
                 .anyRequest().authenticated().and().
                 exceptionHandling().and().sessionManagement()

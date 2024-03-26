@@ -1,6 +1,6 @@
 package com.Final.Back.Security;
 
-import com.Final.Back.Services.ServImpl.MyUserDetailsService;
+import com.Final.Back.Services.ServImpl.Authentifcation.MyUserDetailsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

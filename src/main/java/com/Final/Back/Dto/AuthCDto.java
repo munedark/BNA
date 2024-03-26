@@ -1,8 +1,8 @@
 package com.Final.Back.Dto;
 
 
-import com.Final.Back.Modles.Profile;
-import com.Final.Back.Modles.Client;
+import com.Final.Back.Modles.Authentification.Profile;
+import com.Final.Back.Modles.Utilisateurs.Client;
 import lombok.Data;
 
 @Data
