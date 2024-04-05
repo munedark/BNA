@@ -33,4 +33,13 @@ public class DossierDebiteurImpl implements DossierDebiteurServ {
     public void deleteDossierDebiteurById(DossierId dossierId) {
         dossierDebiteurRepo.deleteById(dossierId);
     }
+    @Override
+    public Optional<DossierDebiteur> rechercheDossier(Long num) {
+        DossierDebiteur dossierDebiteur = dossierDebiteurRepo.findByNumCtx(num);
+        if (dossierDebiteur != null) {
+            return Optional.of(dossierDebiteur);
+        }
+        return Optional.empty();
+    }
+
 }

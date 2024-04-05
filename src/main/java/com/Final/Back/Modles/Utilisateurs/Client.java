@@ -10,12 +10,10 @@ import java.util.List;
 
 @Getter
 @Setter
-@AllArgsConstructor
+//@AllArgsConstructor
 @RequiredArgsConstructor
 @ToString
 @Entity
 public class Client extends Personne {
-
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    private List<CompteBancaire> comptesBancaires;
+  
 }

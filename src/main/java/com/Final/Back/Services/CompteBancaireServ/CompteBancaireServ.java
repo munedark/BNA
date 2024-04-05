@@ -10,5 +10,6 @@ public interface CompteBancaireServ {
     List<CompteBancaire> getAllComptesBancaires();
     CompteBancaire updateCompteBancaire(CompteBancaire compteBancaire);
     void deleteCompteBancaire(Long id);
+    void addCompteBancaireToAgenceBank(Long compteBancaireId, Long agenceBankId);
 }
 

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/admin/operation-ctx")
+@RequestMapping("/agent/operation-ctx")
 public class OperationCTXController {
 
     private final OperationCTXService operationCTXService;

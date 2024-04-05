@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/admin/produit")
+@RequestMapping("/agent/produit")
 public class ProduitController {
 
     private final ProduitService produitService;

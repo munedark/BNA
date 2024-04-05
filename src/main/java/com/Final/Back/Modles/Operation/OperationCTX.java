@@ -53,7 +53,5 @@ public class OperationCTX {
     @ManyToOne(cascade = CascadeType.ALL)
     private Risque risque;
     @ManyToOne(cascade = CascadeType.ALL)
-    private AgentBna agentBna;
-    @ManyToOne(cascade = CascadeType.ALL)
     private DossierDebiteur dossierDebiteur;
 }

@@ -1,4 +1,4 @@
-package com.Final.Back.Services.CompteBancaire.ServImpl;
+package com.Final.Back.Services.ServImpl.CompteBancaire;
 
 import com.Final.Back.Modles.CompteBancaire.AgenceBank;
 import com.Final.Back.Repository.CompteBancaire.AgenceBankRepo;
@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
 @Service
 public class AgenceBankServiceImpl implements AgenceBankService {
 
@@ -26,7 +25,12 @@ public class AgenceBankServiceImpl implements AgenceBankService {
 
     @Override
     public Optional<AgenceBank> getAgenceBankById(Long id) {
-        return agenceBankRepo.findById(id);
+        Optional<AgenceBank> agenceBank = agenceBankRepo.findById(id);
+        agenceBank.ifPresentOrElse(
+                bank -> System.out.println("Found AgenceBank: " + bank),
+                () -> System.out.println("AgenceBank with ID " + id + " not found")
+        );
+        return agenceBank;
     }
 
     @Override

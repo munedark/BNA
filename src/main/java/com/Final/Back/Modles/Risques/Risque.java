@@ -1,12 +1,19 @@
 package com.Final.Back.Modles.Risques;
 
 import com.Final.Back.Modles.Journales.JournalRisque;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "risque")
+@Data
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class Risque {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "risque_id_Sequence")
@@ -23,9 +30,9 @@ public class Risque {
     @JoinColumn(name = "idJournalRisque")
     private JournalRisque journalRisque;
     @OneToMany
-    @JoinColumn(name = "Detail")
+    @JoinColumn(name = "risque_id")
     private List<DetailRisque> detailRisque;
-    @OneToMany
-    @JoinColumn(name = "produits")
-    private List<Produit> produit;
+    @OneToOne
+    @JoinColumn(name = "risque_id")
+    private Produit produit;
 }

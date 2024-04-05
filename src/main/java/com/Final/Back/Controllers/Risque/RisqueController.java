@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/admin/risque")
+@RequestMapping("/agent/risque")
 public class RisqueController {
 
     private final RisqueService risqueService;

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/admin/dossier-debiteur")
+@RequestMapping("/agent/dossier-debiteur")
 public class DossierDebiteurController {
     @Autowired
     DossierDebiteurServ dossierDebiteurService;
@@ -25,6 +25,10 @@ public class DossierDebiteurController {
     @GetMapping("/{id}")
     public Optional<DossierDebiteur> getDossierDebiteurById(@PathVariable("id") DossierId dossierId) {
         return dossierDebiteurService.getDossierDebiteurById(dossierId);
+    }
+    @GetMapping("/dossier/{id}")
+    public Optional<DossierDebiteur> getDossierDebiteurBynumCtx(@PathVariable("id") long numCtx) {
+        return dossierDebiteurService.rechercheDossier(numCtx);
     }
 
     @PostMapping("/add")

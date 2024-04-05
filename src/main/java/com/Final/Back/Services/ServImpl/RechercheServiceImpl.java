@@ -4,13 +4,17 @@ import com.Final.Back.Dto.DebiteurInfo;
 import com.Final.Back.Modles.CompteBancaire.CompteBancaire;
 import com.Final.Back.Modles.DossierDebiteur.DossierDebiteur;
 import com.Final.Back.Modles.DossierDebiteur.DossierId;
+import com.Final.Back.Modles.Risques.Risque;
 import com.Final.Back.Repository.DossierDebiteur.DossierDebiteurRepo;
 import com.Final.Back.Services.RechercheService;
 import com.Final.Back.Services.UtilisateursServ.ClientServ;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
+
 @Service
 public class RechercheServiceImpl implements RechercheService {
     @Autowired
@@ -34,13 +38,25 @@ public class RechercheServiceImpl implements RechercheService {
         return null;
     }
 
-    public DossierDebiteur rechercher(Long numCtx) {
-        DossierDebiteur dossierDebiteur = dossierDebiteurRepo.findById(new DossierId(numCtx, "")).orElse(null);
-        if (dossierDebiteur != null) {
 
-            return dossierDebiteur;
+    public List<Risque> Risques(Long numCtx){
+        DossierDebiteur dossierDebiteur = dossierDebiteurRepo.findByNumCtx(numCtx);
+        if (dossierDebiteur != null) {
+            System.out.println("DossierDebiteur retrieved: " + dossierDebiteur); // Log retrieved object
+            System.out.println("Number of Risques: " + dossierDebiteur.getRisque().size()); // Log list size
+
+            // Access elements (optional, for lazy loading)
+            for (Risque risque : dossierDebiteur.getRisque()) {
+                System.out.println(risque.toString());
+            }
+
+            return dossierDebiteur.getRisque() != null ? dossierDebiteur.getRisque() : Collections.emptyList();
         }
         return null;
     }
-    }
+
+
+
+
+}
 

@@ -11,4 +11,5 @@ public interface DossierDebiteurServ {
     Optional<DossierDebiteur> getDossierDebiteurById(DossierId dossierId);
     DossierDebiteur saveDossierDebiteur(DossierDebiteur dossierDebiteur);
     void deleteDossierDebiteurById(DossierId dossierId);
+    Optional<DossierDebiteur> rechercheDossier(Long num) ;
 }

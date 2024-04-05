@@ -1,6 +1,6 @@
 package com.Final.Back.Modles.CompteBancaire;
 
-import com.Final.Back.Modles.Risques.Risque;
+import com.Final.Back.Modles.Risques.Risque; // Assuming this import is needed
 import com.Final.Back.Modles.Utilisateurs.Client;
 import lombok.*;
 
@@ -10,26 +10,24 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor
 @ToString
 @Entity
 @Table(name = "CompteBancaire")
 public class CompteBancaire {
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "compte_id_Sequence")
-    @SequenceGenerator(name = "compte_id_Sequence", sequenceName = "COMPTE_ID_SEQ")
-    @Column(name="numCompte",nullable=false,unique=true)
-    private Long numCompte ;
+    @Column(name = "numCompte", nullable = false, unique = true)
+    private Long numCompte;
 
     @Column(name = "solde")
     private float solde;
 
     @ManyToOne
-    @JoinColumn(name = "agence_bank_id", referencedColumnName = "idAgence")
+    @JoinColumn(name = "agence_bank_id", referencedColumnName = "idAgence" )
     private AgenceBank agenceBank;
+
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "idClient")
     private Client client;
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Risque> risque;
+
 }

@@ -33,6 +33,7 @@ public class DossierDebiteur {
     @OneToOne
     @JoinColumn(name = "Jounral")
     private JournalDebiteur journalDebiteur;
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+            fetch=FetchType.EAGER)
     private List<Risque> risque;
 }
