@@ -21,11 +21,11 @@ public class Risque {
     @Column(name="id",nullable=false,unique=true)
     private Long id;
     @Column(name = "SoldeRisque")
-    private float SoldeRisque;
+    private float soldeRisque;
     @Column(name = "MntFrais")
-    private float MntFrais;
+    private float mntFrais;
     @Column(name = "MntEntreePrincipale")
-    private float MntEntreePrincipale;
+    private float mntEntreePrincipale;
     @OneToOne
     @JoinColumn(name = "idJournalRisque")
     private JournalRisque journalRisque;

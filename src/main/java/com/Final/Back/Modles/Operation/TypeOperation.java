@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class TypeOperation {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "typeOperation_id_Sequence")
-    @SequenceGenerator(name = "typeOperation_id_Sequence", sequenceName = "TYPE_OPERATION_ID_SEQ")
+    @SequenceGenerator(name = "typeOperation_id_Sequence", sequenceName = "TYPE_OPERATION_ID_SEQ") // Correction du nom de la séquence ici
     @Column(name="idType",nullable=false,unique=true)
     private int idOperation;
     @Column(name = "libellOperation", unique = true)

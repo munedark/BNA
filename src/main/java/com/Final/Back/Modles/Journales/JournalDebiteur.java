@@ -19,6 +19,5 @@ public class JournalDebiteur {
     @SequenceGenerator(name ="journalDebiteur_id_Sequence", sequenceName = "journalDebiteur_ID_SEQ")
     @Column(name="idJournalDebiteur",nullable=false,unique=true)
     private Long idJournalDebiteur;
-    @OneToMany(mappedBy = "journalDebiteur")
-    private List<DossierDebiteur> historique;
+
 }

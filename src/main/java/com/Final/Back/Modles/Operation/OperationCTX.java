@@ -3,6 +3,7 @@ package com.Final.Back.Modles.Operation;
 import com.Final.Back.Modles.DossierDebiteur.DossierDebiteur;
 import com.Final.Back.Modles.Risques.Risque;
 import com.Final.Back.Modles.Utilisateurs.AgentBna;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -28,14 +29,20 @@ public class OperationCTX {
     private float mntOpeation;
     @Column(name ="MntFrais")
     private float mntFrais;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name ="dateOperation")
     private Date dateOperation;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name ="dateCreation")
     private Date dateCreation;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @Column(name ="dateValeurCTX")
+    private Date dateValeurCTX;
     @Column(name ="matriculeAjout")
     private String matriculeAjout;
     @Column(name ="matriculeValidateur")
     private String matriculeValidateur;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name ="dateValidation")
     private Date dateValidation;
     @Column(name ="etatOperation")
@@ -46,12 +53,14 @@ public class OperationCTX {
     private String nomBeneficiairePaiment;
     @Column(name ="motifOperainoCTX")
     private Float motifOperationCTX;
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<TypeOperation> typeOperations;
+    @ManyToOne
+    @JoinColumn(name = "Operation_id", referencedColumnName = "idType" )
+    private TypeOperation typeOperation;
     @OneToMany(cascade = CascadeType.ALL)
     private List<TypePaiment> typePaiments ;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
+    @JoinColumn(name = "Risque_id", referencedColumnName = "id" )
     private Risque risque;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private DossierDebiteur dossierDebiteur;
 }
