@@ -30,6 +30,11 @@ public class TypePaimentServiceImpl implements TypePaimentService {
     }
 
     @Override
+    public Optional<TypePaiment> getTypePaimentBylibelle(String libelle) {
+        return typePaimentRepo.findByLibelle(libelle);
+    }
+
+    @Override
     public TypePaiment saveTypePaiment(TypePaiment typePaiment) {
         return typePaimentRepo.save(typePaiment);
     }

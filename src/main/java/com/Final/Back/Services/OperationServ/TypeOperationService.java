@@ -8,6 +8,7 @@ import java.util.Optional;
 public interface TypeOperationService {
     List<TypeOperation> getAllTypeOperations();
     Optional<TypeOperation> getTypeOperationById(int id);
+    Optional<TypeOperation> getTypeOperationBylibelle(String libelle);
     TypeOperation saveTypeOperation(TypeOperation typeOperation);
     void deleteTypeOperationById(int id);
 }

@@ -1,5 +1,6 @@
 package com.Final.Back.Controllers.Operation;
 
+import com.Final.Back.Modles.Operation.TypeOperation;
 import com.Final.Back.Modles.Operation.TypePaiment;
 import com.Final.Back.Services.OperationServ.TypePaimentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/admin/type-paiment")
+@RequestMapping("/agent/type-paiment")
 public class TypePaimentController {
 
     private final TypePaimentService typePaimentService;
@@ -27,6 +28,11 @@ public class TypePaimentController {
     @GetMapping("/{id}")
     public Optional<TypePaiment> getTypePaimentById(@PathVariable Long id) {
         return typePaimentService.getTypePaimentById(id);
+    }
+
+    @GetMapping("/libelle/{libelle}")
+    public Optional<TypePaiment> getTypeOperationByLibelle(@PathVariable String libelle) {
+        return typePaimentService.getTypePaimentBylibelle(libelle);
     }
 
     @PostMapping("/add")

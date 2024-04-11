@@ -30,6 +30,11 @@ public class TypeOperationServiceImpl implements TypeOperationService {
     }
 
     @Override
+    public Optional<TypeOperation> getTypeOperationBylibelle(String libelle) {
+        return typeOperationRepo.findByLibelleOperation(libelle);
+    }
+
+    @Override
     public TypeOperation saveTypeOperation(TypeOperation typeOperation) {
         return typeOperationRepo.save(typeOperation);
     }

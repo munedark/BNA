@@ -15,8 +15,6 @@ public class DossierDebiteurController {
     @Autowired
     DossierDebiteurServ dossierDebiteurService;
 
-
-
     @GetMapping("/all")
     public List<DossierDebiteur> getAllDossierDebiteurs() {
         return dossierDebiteurService.getAllDossierDebiteurs();

@@ -26,16 +26,39 @@ public class OperationCTX {
     @Column(name="idOperation",nullable=false,unique=true)
     private Long idOperation;
     @Column(name ="mntOperation")
-    private float mntOpeation;
+    private float mntOperation;
     @Column(name ="MntFrais")
     private float mntFrais;
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @Column(name ="typeFrais")
+    private String typeFrais;
+    @Column(name ="typeAuxiliaire")
+    private String typeAuxiliaire;
+    @Column(name ="typePiece")
+    private String typePiece;
+    @Column(name = "numeroPiece")
+    private Long numeroPiece;
+    @Column(name ="auxiliaire")
+    private String auxiliaire;
+    @Column(name ="cinAuxiliaire")
+    private Long cinAuxiliaire;
+    @Column(name ="nomAuxiliaire")
+    private String nomAuxiliaire;
+    @Column(name ="mntHonoraire")
+    private float mntHonoraire;
+    @Column(name ="RIB")
+    private Long rib;
+    @Column(name ="nomBeneficiaire")
+    private String nomBeneficiaire;
+    @Column(name ="natureAuxiliaire")
+    private String natureAuxiliaire;
+    @Column(name ="RneAuxiliaire")
+    private String rneAuxiliaire;
+    @Column(name ="prenomAuxiliaire")
+    private String prenomAuxiliaire;
     @Column(name ="dateOperation")
     private Date dateOperation;
-    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name ="dateCreation")
     private Date dateCreation;
-    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name ="dateValeurCTX")
     private Date dateValeurCTX;
     @Column(name ="matriculeAjout")
@@ -56,8 +79,8 @@ public class OperationCTX {
     @ManyToOne
     @JoinColumn(name = "Operation_id", referencedColumnName = "idType" )
     private TypeOperation typeOperation;
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<TypePaiment> typePaiments ;
+    @OneToOne
+    private TypePaiment typePaiments ;
     @ManyToOne
     @JoinColumn(name = "Risque_id", referencedColumnName = "id" )
     private Risque risque;

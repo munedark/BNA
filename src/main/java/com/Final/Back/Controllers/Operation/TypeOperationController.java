@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/admin/type-operation")
+@RequestMapping("/agent/type-operation")
 public class TypeOperationController {
 
     private final TypeOperationService typeOperationService;
@@ -27,6 +27,11 @@ public class TypeOperationController {
     @GetMapping("/{id}")
     public Optional<TypeOperation> getTypeOperationById(@PathVariable int id) {
         return typeOperationService.getTypeOperationById(id);
+    }
+
+    @GetMapping("/libelle/{libelle}")
+    public Optional<TypeOperation> getTypeOperationBylibelle(@PathVariable String libelle) {
+        return typeOperationService.getTypeOperationBylibelle(libelle);
     }
 
     @PostMapping("/add")
