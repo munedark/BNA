@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DossierDebiteurRepo extends JpaRepository<DossierDebiteur, DossierId> {
-    @Query("SELECT d FROM DossierDebiteur d WHERE d.dossierId.NumCtx = :numCtx")
+    @Query("SELECT d FROM DossierDebiteur d WHERE d.dossierId.numCtx = :numCtx")
     DossierDebiteur findByNumCtx(Long numCtx);
 }

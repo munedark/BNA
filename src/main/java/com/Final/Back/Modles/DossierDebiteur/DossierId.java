@@ -12,6 +12,6 @@ import java.io.Serializable;
 @EqualsAndHashCode
 @Embeddable
 public class DossierId implements Serializable {
-    private Long NumCtx;
-    private String CodeStructure;
+    private Long numCtx;
+    private String codeStructure;
 }

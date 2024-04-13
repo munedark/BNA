@@ -4,6 +4,7 @@ import com.Final.Back.Modles.CompteBancaire.CompteBancaire;
 import lombok.*;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.util.List;
@@ -15,5 +16,7 @@ import java.util.List;
 @ToString
 @Entity
 public class Client extends Personne {
+    @Column(name = "cin", unique = true)
+    Long cin;
   
 }

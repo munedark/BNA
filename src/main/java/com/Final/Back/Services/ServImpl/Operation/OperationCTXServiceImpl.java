@@ -39,10 +39,11 @@ public class OperationCTXServiceImpl implements OperationCTXService {
         operationCTXRepo.deleteById(id);
     }
 
-    @Override
-    public List<OperationCTX> operationsByTypeLibell(String typeLibelle) {
-       return operationCTXRepo.findByTypeOperation_LibelleOperation(typeLibelle);
 
+
+    @Override
+    public List<OperationCTX> findByLibelleOperation(String libelleOperation) {
+        return operationCTXRepo.findByTypeOperationLibelleOperation(libelleOperation);
     }
 
 

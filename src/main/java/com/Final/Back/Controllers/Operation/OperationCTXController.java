@@ -28,9 +28,10 @@ public class OperationCTXController {
     public Optional<OperationCTX> getOperationById(@PathVariable Long id) {
         return operationCTXService.getOperationById(id);
     }
-    @GetMapping("/{libelle}")
-    public List<OperationCTX> getOperationByTypeLibelle(@PathVariable String libelle ) {
-        return operationCTXService.operationsByTypeLibell(libelle);
+
+    @GetMapping("/libelle/{libellee}")
+    public List<OperationCTX> findByLibelleOperation(@PathVariable String libellee ) {
+        return operationCTXService.findByLibelleOperation(libellee);
     }
 
     @PostMapping("/add")

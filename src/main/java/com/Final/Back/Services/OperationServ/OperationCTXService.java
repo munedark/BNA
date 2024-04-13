@@ -10,5 +10,6 @@ public interface OperationCTXService {
     Optional<OperationCTX> getOperationById(Long id);
     OperationCTX saveOperation(OperationCTX operation);
     void deleteOperationById(Long id);
-    List<OperationCTX> operationsByTypeLibell(String typeLibelle);
+
+    List<OperationCTX> findByLibelleOperation(String libelleOperation);
 }
