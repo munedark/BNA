@@ -15,6 +15,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/agent/avocat")
 public class AvocatController {
+    String model;
     @Autowired
     AvocatService avocatService;
     @GetMapping("/all")

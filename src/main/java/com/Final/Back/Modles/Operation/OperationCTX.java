@@ -74,6 +74,8 @@ public class OperationCTX {
     private Float numAffaireCTX;
     @Column(name ="nomBeneficiairePaiment")
     private String nomBeneficiairePaiment;
+    @Column(name ="matriculeEmploye")
+    private String matriculeEmploye;
     @Column(name ="motifOperainoCTX")
     private Float motifOperationCTX;
     @ManyToOne
