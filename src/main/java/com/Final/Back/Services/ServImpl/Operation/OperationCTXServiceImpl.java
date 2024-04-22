@@ -6,6 +6,7 @@ import com.Final.Back.Services.OperationServ.OperationCTXService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,12 +40,23 @@ public class OperationCTXServiceImpl implements OperationCTXService {
         operationCTXRepo.deleteById(id);
     }
 
-
+    @Override
+    public OperationCTX updateOperationCTX(Long id, String matriculeValidateur, Date dateValidation, String etatOperation) {
+        OperationCTX operation = operationCTXRepo.findById(id).orElse(null);
+        if (operation != null) {
+            operation.setMatriculeValidateur(matriculeValidateur);
+            operation.setDateValidation(dateValidation);
+            operation.setEtatOperation(etatOperation);
+            return operationCTXRepo.save(operation);
+        }
+        return null; // or throw an exception
+    }
 
     @Override
     public List<OperationCTX> findByLibelleOperation(String libelleOperation) {
         return operationCTXRepo.findByTypeOperationLibelleOperation(libelleOperation);
     }
+
 
 
 }
