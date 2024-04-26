@@ -26,6 +26,12 @@ public class Risque {
     private float mntFrais;
     @Column(name = "MntEntreePrincipale")
     private float mntEntreePrincipale;
+    @Column(name = "Stade")
+    private String stade;
+    @Column(name = "IR")
+    private float ir;
+    @Column(name = "IC")
+    private float ic;
     @OneToOne
     @JoinColumn(name = "idJournalRisque")
     private JournalRisque journalRisque;

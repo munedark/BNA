@@ -88,4 +88,8 @@ public class OperationCTX {
     private Risque risque;
     @ManyToOne
     private DossierDebiteur dossierDebiteur;
+    @OneToOne
+    private Cheque cheque;
+    @OneToOne
+    private VirementTelecomponse virementTelecomponse;
 }

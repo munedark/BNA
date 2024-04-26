@@ -54,10 +54,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/validateur/**").hasRole("VALIDATEUR")
                 .antMatchers("/agent").hasAnyRole("ADMINISTARATEUR","GESTIONNAIRE","VALIDATEUR")
                 .antMatchers("/client/**").hasRole("CLIENT")
-                .anyRequest().authenticated().and().
-                exceptionHandling().and().sessionManagement()
+                .antMatchers("/ws/**").permitAll() // Allow access to the WebSocket endpoint
+                .anyRequest().authenticated().and()
+                .exceptionHandling().and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-    }
+        // Allow WebSocket handshake without authentication
+        httpSecurity.headers().frameOptions().disable();}
 
 }
