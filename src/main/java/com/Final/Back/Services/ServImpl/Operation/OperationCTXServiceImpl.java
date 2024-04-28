@@ -1,7 +1,11 @@
 package com.Final.Back.Services.ServImpl.Operation;
 
+import com.Final.Back.Modles.DossierDebiteur.DossierDebiteur;
 import com.Final.Back.Modles.Operation.OperationCTX;
+import com.Final.Back.Modles.Risques.Risque;
+import com.Final.Back.Repository.DossierDebiteur.DossierDebiteurRepo;
 import com.Final.Back.Repository.Operation.OperationCTXRepo;
+import com.Final.Back.Repository.Risque.RisqueRepo;
 import com.Final.Back.Services.OperationServ.OperationCTXService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +23,10 @@ public class OperationCTXServiceImpl implements OperationCTXService {
     public OperationCTXServiceImpl(OperationCTXRepo operationCTXRepo) {
         this.operationCTXRepo = operationCTXRepo;
     }
-
+@Autowired
+    RisqueRepo risqueRepo;
+    @Autowired
+    DossierDebiteurRepo dossierDebiteurRepo;
     @Override
     public List<OperationCTX> getAllOperations() {
         return operationCTXRepo.findAll();
@@ -44,13 +51,38 @@ public class OperationCTXServiceImpl implements OperationCTXService {
     public OperationCTX updateOperationCTX(Long id, String matriculeValidateur, Date dateValidation, String etatOperation) {
         OperationCTX operation = operationCTXRepo.findById(id).orElse(null);
         if (operation != null) {
+
             operation.setMatriculeValidateur(matriculeValidateur);
             operation.setDateValidation(dateValidation);
             operation.setEtatOperation(etatOperation);
+
+
+            Risque risque = operation.getRisque();
+            if (risque != null && etatOperation.equals("V")) {
+                float newMntFrais = risque.getMntFrais() + operation.getMntFrais();
+                float newMntEntreePrincipale = risque.getMntEntreePrincipale() + operation.getMntFrais();
+                risque.setMntFrais(newMntFrais);
+                risque.setMntEntreePrincipale(newMntEntreePrincipale);
+
+                risqueRepo.save(risque);
+            }
+
+
+            DossierDebiteur dossierDebiteur = operation.getDossierDebiteur();
+            if (dossierDebiteur != null && etatOperation.equals("V")) {
+
+                float newSoldeRecouvrement = dossierDebiteur.getSoldeRecouvrement() + operation.getMntFrais();
+                dossierDebiteur.setSoldeRecouvrement(newSoldeRecouvrement);
+
+                dossierDebiteurRepo.save(dossierDebiteur);
+            }
+
+
             return operationCTXRepo.save(operation);
         }
-        return null; // or throw an exception
+        return null;
     }
+
 
     @Override
     public List<OperationCTX> findByLibelleOperation(String libelleOperation) {
