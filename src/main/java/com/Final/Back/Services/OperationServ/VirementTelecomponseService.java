@@ -11,5 +11,6 @@ public interface VirementTelecomponseService {
     VirementTelecomponse getVirementById(Long id);
     List<VirementTelecomponse> getVirementsByDate(LocalDate date);
     VirementTelecomponse createVirement(VirementTelecomponse virement);
+//    void validerVirement(VirementTelecomponse virement);
     void deleteVirement(Long id);
 }

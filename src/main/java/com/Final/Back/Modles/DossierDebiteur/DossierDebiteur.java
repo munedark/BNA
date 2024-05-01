@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class DossierDebiteur {
     @Column(name = "etat_CTX")
     private boolean etat_CTX;
     @Column(name="dateTransfert")
-    private Date dateTransfert;
+    private LocalDate dateTransfert;
 
     @OneToOne
     @JoinColumn(name = "compte_bancaire_id", referencedColumnName = "numCompte", unique = true)

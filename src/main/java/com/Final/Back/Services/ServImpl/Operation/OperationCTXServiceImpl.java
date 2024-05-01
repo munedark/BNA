@@ -3,9 +3,11 @@ package com.Final.Back.Services.ServImpl.Operation;
 import com.Final.Back.Modles.DossierDebiteur.DossierDebiteur;
 import com.Final.Back.Modles.Operation.Cheque;
 import com.Final.Back.Modles.Operation.OperationCTX;
+import com.Final.Back.Modles.Operation.VirementTelecomponse;
 import com.Final.Back.Modles.Risques.Risque;
 import com.Final.Back.Repository.DossierDebiteur.DossierDebiteurRepo;
 import com.Final.Back.Repository.Operation.OperationCTXRepo;
+import com.Final.Back.Repository.Operation.VirementTelecomponseRepo;
 import com.Final.Back.Repository.Risque.RisqueRepo;
 import com.Final.Back.Services.OperationServ.OperationCTXService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,8 @@ import java.util.Optional;
 public class OperationCTXServiceImpl implements OperationCTXService {
 
     private final OperationCTXRepo operationCTXRepo;
-
+    @Autowired
+    VirementTelecomponseRepo virementRepository;
     @Autowired
     public OperationCTXServiceImpl(OperationCTXRepo operationCTXRepo) {
         this.operationCTXRepo = operationCTXRepo;
@@ -105,7 +108,18 @@ public class OperationCTXServiceImpl implements OperationCTXService {
         }
         return null;
     }
+public  void updateOperationVirement(OperationCTX operation){
+    operationCTXRepo.save(operation);
+    operation.getVirementTelecomponse().setValidation("validé");
+    virementRepository.save(operation.getVirementTelecomponse());
+    DossierDebiteur dossierDebiteur = operation.getDossierDebiteur();
+    VirementTelecomponse virementTelecomponse=operation.getVirementTelecomponse();
+    float newSoldeRecouvrement = dossierDebiteur.getSoldeRecouvrement() - virementTelecomponse.getMontantVirement();
+    dossierDebiteur.setSoldeRecouvrement(newSoldeRecouvrement);
 
+    dossierDebiteurRepo.save(dossierDebiteur);
+
+}
 
 
     @Override

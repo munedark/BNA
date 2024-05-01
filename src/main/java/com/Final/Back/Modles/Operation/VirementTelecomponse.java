@@ -33,4 +33,6 @@ public class VirementTelecomponse {
     String nomDonneur;
     @Column(name="ribDonneur")
     String ribDonneur;
+    @Column(name="Validation")
+    String validation;
 }

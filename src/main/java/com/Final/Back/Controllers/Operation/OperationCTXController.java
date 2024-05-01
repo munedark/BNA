@@ -69,7 +69,10 @@ public class OperationCTXController {
                 operationDTO.getDateValidation(),
                 operationDTO.getEtatOperation());
     }
-
+    @PostMapping("/update/virement")
+    public void updateByVirement(@RequestBody OperationCTX operation){
+        this.operationCTXService.updateOperationVirement(operation);
+    }
 
 
 }

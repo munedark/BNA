@@ -1,5 +1,7 @@
 package com.Final.Back.Controllers.Operation;
 
+import com.Final.Back.Dto.OperationDTO;
+import com.Final.Back.Modles.Operation.OperationCTX;
 import com.Final.Back.Modles.Operation.VirementTelecomponse;
 import com.Final.Back.Services.OperationServ.VirementTelecomponseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,4 +52,9 @@ public class VirementTelecompenceController {
         virementService.deleteVirement(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+//    @PostMapping("/validation")
+//    public void validationVirement(@RequestBody VirementTelecomponse virement) {
+//        virementService.validerVirement(virement);
+//    }
 }
