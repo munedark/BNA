@@ -32,6 +32,8 @@ public class Risque {
     private float ir;
     @Column(name = "IC")
     private float ic;
+    @Column(name="typeCloture")
+    private String typeCloture;
     @OneToOne
     @JoinColumn(name = "idJournalRisque")
     private JournalRisque journalRisque;

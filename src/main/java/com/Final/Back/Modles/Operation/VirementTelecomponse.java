@@ -3,6 +3,7 @@ package com.Final.Back.Modles.Operation;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 @Getter
 @Setter
@@ -19,7 +20,7 @@ public class VirementTelecomponse {
     @Column(name="numVirement")
     int numVirement;
     @Column(name="dateOperation")
-    Date dateOperation;
+    LocalDate dateOperation;
     @Column(name="nomBeneficiaire")
     String nomBeneficiaire;
     @Column(name="ribBeneficiaire")

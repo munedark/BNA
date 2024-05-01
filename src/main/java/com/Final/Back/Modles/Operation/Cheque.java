@@ -1,5 +1,6 @@
 package com.Final.Back.Modles.Operation;
 
+import com.Final.Back.Modles.CompteBancaire.AgenceBank;
 import lombok.*;
 
 import javax.persistence.*;
@@ -22,8 +23,9 @@ public class Cheque {
     float mntCheque;
     @Column
     String ribDonneur;
-    @Column
-    String agenceCheque;
+    @ManyToOne
+    @JoinColumn(name = "agence_bank_id", referencedColumnName = "idAgence" )
+    AgenceBank agenceCheque;
     @Column
     String motif;
 

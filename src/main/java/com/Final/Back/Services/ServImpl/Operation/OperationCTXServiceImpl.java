@@ -1,6 +1,7 @@
 package com.Final.Back.Services.ServImpl.Operation;
 
 import com.Final.Back.Modles.DossierDebiteur.DossierDebiteur;
+import com.Final.Back.Modles.Operation.Cheque;
 import com.Final.Back.Modles.Operation.OperationCTX;
 import com.Final.Back.Modles.Risques.Risque;
 import com.Final.Back.Repository.DossierDebiteur.DossierDebiteurRepo;
@@ -82,6 +83,29 @@ public class OperationCTXServiceImpl implements OperationCTXService {
         }
         return null;
     }
+    @Override
+    public OperationCTX updateOperationByCheque(Long id, String matriculeValidateur, Date dateValidation, String etatOperation) {
+        OperationCTX operation = operationCTXRepo.findById(id).orElse(null);
+        if (operation != null) {
+            operation.setMatriculeValidateur(matriculeValidateur);
+            operation.setDateValidation(dateValidation);
+            operation.setEtatOperation(etatOperation);
+
+            DossierDebiteur dossierDebiteur = operation.getDossierDebiteur();
+            Cheque cheque = operation.getCheque();
+
+            if (cheque != null && etatOperation.equals("V") && dossierDebiteur != null) {
+                float newSoldeRecouvrement = dossierDebiteur.getSoldeRecouvrement() - cheque.getMntCheque();
+                dossierDebiteur.setSoldeRecouvrement(newSoldeRecouvrement);
+
+                dossierDebiteurRepo.save(dossierDebiteur);
+            }
+
+            return operationCTXRepo.save(operation);
+        }
+        return null;
+    }
+
 
 
     @Override

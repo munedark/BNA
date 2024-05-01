@@ -13,5 +13,6 @@ public interface OperationCTXService {
     void deleteOperationById(Long id);
 
     OperationCTX updateOperationCTX(Long id, String matriculeValidateur, Date dateValidation, String etatOperation);
+    OperationCTX updateOperationByCheque(Long id, String matriculeValidateur, Date dateValidation, String etatOperation);
     List<OperationCTX> findByLibelleOperation(String libelleOperation);
 }

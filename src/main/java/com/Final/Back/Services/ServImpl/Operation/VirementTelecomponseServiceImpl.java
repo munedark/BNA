@@ -7,6 +7,7 @@ import com.Final.Back.Services.OperationServ.VirementTelecomponseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -31,9 +32,8 @@ public class VirementTelecomponseServiceImpl implements VirementTelecomponseServ
     }
 
     @Override
-    public List<VirementTelecomponse> getVirementsByDate(Date date) {
-        // Implement your logic to retrieve virements by date from the repository
-        return null;
+    public List<VirementTelecomponse> getVirementsByDate(LocalDate date) {
+        return virementRepository.findByDateOperation(date);
     }
 
     @Override

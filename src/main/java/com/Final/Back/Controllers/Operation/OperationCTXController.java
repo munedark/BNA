@@ -61,6 +61,14 @@ public class OperationCTXController {
                 operationDTO.getDateValidation(),
                 operationDTO.getEtatOperation());
     }
+    @PutMapping("/update/cheque/{id}")
+    public OperationCTX updateOperationByCheque(@PathVariable Long id,
+                                           @RequestBody OperationDTO operationDTO) {
+        return operationCTXService.updateOperationByCheque(id,
+                operationDTO.getMatriculeValidateur(),
+                operationDTO.getDateValidation(),
+                operationDTO.getEtatOperation());
+    }
 
 
 
