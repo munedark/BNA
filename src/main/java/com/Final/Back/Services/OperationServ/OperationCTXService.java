@@ -16,4 +16,5 @@ public interface OperationCTXService {
     OperationCTX updateOperationByCheque(Long id, String matriculeValidateur, Date dateValidation, String etatOperation);
     List<OperationCTX> findByLibelleOperation(String libelleOperation);
     void updateOperationVirement(OperationCTX operation);
+    List<OperationCTX> OperationVirementValide();
 }

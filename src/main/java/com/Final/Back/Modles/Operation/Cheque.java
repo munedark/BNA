@@ -15,7 +15,7 @@ public class Cheque {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "cheque_id_Sequence")
     @SequenceGenerator(name = "cheque_id_Sequence", sequenceName = "CHEQUE_ID_SEQ")
-    @Column(name="idCheque",nullable=false,unique=true)
+    @Column(name="idCheque")
     private Long idCheque;
     @Column
     long numCheque;

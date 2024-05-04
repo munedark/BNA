@@ -121,6 +121,11 @@ public  void updateOperationVirement(OperationCTX operation){
 
 }
 
+    @Override
+    public List<OperationCTX> OperationVirementValide() {
+        return operationCTXRepo.findOperationsWithValidatedVirement();
+    }
+
 
     @Override
     public List<OperationCTX> findByLibelleOperation(String libelleOperation) {

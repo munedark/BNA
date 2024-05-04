@@ -74,5 +74,9 @@ public class OperationCTXController {
         this.operationCTXService.updateOperationVirement(operation);
     }
 
+    @GetMapping("/formeValide")
+    public List<OperationCTX> operationVirementValide(){
+        return operationCTXService.OperationVirementValide();
+    }
 
 }

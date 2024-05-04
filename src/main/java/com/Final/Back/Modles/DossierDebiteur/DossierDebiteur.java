@@ -26,7 +26,7 @@ public class DossierDebiteur {
     @Column(name = "etat_CTX")
     private boolean etat_CTX;
     @Column(name="dateTransfert")
-    private LocalDate dateTransfert;
+    private Date dateTransfert;
 
     @OneToOne
     @JoinColumn(name = "compte_bancaire_id", referencedColumnName = "numCompte", unique = true)

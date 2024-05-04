@@ -92,4 +92,6 @@ public class OperationCTX {
     private Cheque cheque;
     @OneToOne
     private VirementTelecomponse virementTelecomponse;
+    @OneToOne
+    private FormeAffectation formeAffectation;
 }

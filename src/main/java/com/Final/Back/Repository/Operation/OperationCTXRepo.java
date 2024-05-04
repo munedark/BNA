@@ -12,4 +12,6 @@ public interface OperationCTXRepo extends JpaRepository<OperationCTX,Long> {
 
     @Query("SELECT o FROM OperationCTX o WHERE o.typeOperation.libelleOperation = :libelleOperation")
     List<OperationCTX> findByTypeOperationLibelleOperation(String libelleOperation);
+    @Query("SELECT o FROM OperationCTX o WHERE o.virementTelecomponse.validation = 'validé'")
+    List<OperationCTX> findOperationsWithValidatedVirement();
 }
