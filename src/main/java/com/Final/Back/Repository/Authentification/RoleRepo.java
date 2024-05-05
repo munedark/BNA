@@ -8,4 +8,3 @@ import org.springframework.stereotype.Repository;
 public interface RoleRepo extends JpaRepository<Role, Long> {
     Role save(Role role);
 }
-

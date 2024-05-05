@@ -2,7 +2,7 @@ package com.Final.Back.Modles.Utilisateurs;
 
 import javax.persistence.*;
 
-import com.Final.Back.Modles.Operation.OperationCTX;
+import com.Final.Back.OperationCtx.OperationCtx;
 import lombok.*;
 
 import java.util.Set;
@@ -34,12 +34,7 @@ public class Personne {
     @Column( name = "numTel")
     private String numtele;
     @ManyToMany
-    @JoinTable(
-            name = "Personne_OperationCTX",
-            joinColumns = @JoinColumn(name = "personne_id"),
-            inverseJoinColumns = @JoinColumn(name = "operation_id")
-    )
-    private Set<OperationCTX> viewedOperations;
+    private Set<OperationCtx> viewedOperations;
 
 
 
