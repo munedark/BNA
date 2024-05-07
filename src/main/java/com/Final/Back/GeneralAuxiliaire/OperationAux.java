@@ -1,5 +1,6 @@
 package com.Final.Back.GeneralAuxiliaire;
 
+import com.Final.Back.Modles.AuxiliaireConvontionne.Auxiliaire;
 import com.Final.Back.OperationFraisGeneraux.OperationFraisGeneraux;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,6 +9,8 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -17,8 +20,6 @@ public class OperationAux extends OperationFraisGeneraux {
 
     @Column(name ="typeAuxiliaire")
     private String typeAuxiliaire;
-    @Column(name ="auxiliaire")
-    private String auxiliaire;
     @Column(name ="cinAuxiliaire")
     private Long cinAuxiliaire;
     @Column(name ="nomAuxiliaire")
@@ -33,6 +34,7 @@ public class OperationAux extends OperationFraisGeneraux {
     private String prenomAuxiliaire;
     @Column(name ="numAffaireCTX")
     private Float numAffaireCTX;
-
+    @ManyToOne
+    private Auxiliaire auxiliaire;
 
 }

@@ -17,9 +17,9 @@ public class AgenceBank {
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "agenceBank_id_Sequence")
     @SequenceGenerator(name = "agenceBank_id_Sequence", sequenceName = "AGENCE_BANK_ID_SEQ")
     private Long idAgence;
-
-    @Column(name = "emplacement")
-    private String emplacement;
-
+    @Column(unique = true)
+    private String identifiantUnique;
+    private String nomAgence;
+    private String ville;
 
 }

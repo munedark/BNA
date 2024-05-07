@@ -18,7 +18,7 @@ public class Cheque {
     @Column(name="idCheque")
     private Long idCheque;
     @Column
-    long numCheque;
+    Long numCheque;
     @Column
     float mntCheque;
     @Column

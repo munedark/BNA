@@ -21,9 +21,9 @@ public class OperationFraisJugement extends OperationCtx {
     @Column(name ="dateValeurCTX")
     private LocalDate dateValeurCTX;
     @Column(name ="numAffaireCTX")
-    private Float numAffaireCTX;
+    private Long numAffaireCTX;
     @Column(name ="recette")
     private String recette;
     @Column(name ="motifOperainoCTX")
-    private Float motifOperationCTX;
+    private float motifOperationCTX;
 }

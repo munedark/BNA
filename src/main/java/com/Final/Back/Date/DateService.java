@@ -11,20 +11,20 @@ public class DateService {
     private DateRepository dateRepository;
 
     public LocalDate getDate() {
-        return dateRepository.findById(1L).orElse(new DateEntity()).getBnaDate();
+        return dateRepository.findById(1L).orElse(new DateBna()).getBnaDate();
     }
 
     public void setDate(LocalDate newDate) {
-        DateEntity dateEntity = dateRepository.findById(1L).orElse(new DateEntity());
-        dateEntity.setBnaDate(newDate);
-        dateRepository.save(dateEntity);
+        DateBna dateBna = dateRepository.findById(1L).orElse(new DateBna());
+        dateBna.setBnaDate(newDate);
+        dateRepository.save(dateBna);
     }
 
     public void incrementDate() {
-        DateEntity dateEntity = dateRepository.findById(1L).orElse(new DateEntity());
-        LocalDate currentDate = dateEntity.getBnaDate();
+        DateBna dateBna = dateRepository.findById(1L).orElse(new DateBna());
+        LocalDate currentDate = dateBna.getBnaDate();
         LocalDate updatedDate = currentDate.plusDays(1);
-        dateEntity.setBnaDate(updatedDate);
-        dateRepository.save(dateEntity);
+        dateBna.setBnaDate(updatedDate);
+        dateRepository.save(dateBna);
     }
 }
