@@ -54,7 +54,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/validateur/**").hasRole("VALIDATEUR")
                 .antMatchers("/agent").hasAnyRole("ADMINISTARATEUR","GESTIONNAIRE","VALIDATEUR")
                 .antMatchers("/client/**").hasRole("CLIENT")
-                .antMatchers("/chat/**").permitAll() // Allow access to the WebSocket endpoint
+                .antMatchers("/chat/**").permitAll()
+                .antMatchers("/date/**").permitAll()
                 .anyRequest().authenticated().and()
                 .exceptionHandling().and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);

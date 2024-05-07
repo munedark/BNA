@@ -18,6 +18,7 @@ import java.util.Date;
 @RequiredArgsConstructor
 @Entity
 @Table(name = "OperationCtx")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class OperationCtx {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "OperationCtx_id_Sequence")

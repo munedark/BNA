@@ -13,6 +13,7 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @RequiredArgsConstructor
+@Inheritance(strategy = InheritanceType.JOINED)
 @Entity
 public class OperationFraisGeneraux extends OperationCtx {
 

@@ -1,8 +1,8 @@
-package com.Final.Back.FraisAuxiliaire;
+package com.Final.Back.GeneralNonAuxiliaire;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface FraisAuxiliaireRepo extends JpaRepository<FraisAuxiliaire,Long> {
+public interface OperationNonAuxRepo extends JpaRepository<OperationNonAux,Long> {
 }

@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @RestController
 @RequestMapping("/agent/operations-frais")
@@ -33,5 +34,10 @@ public class OperationFraisGenerauxController {
                                                               @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateValidation,
                                                               @RequestParam String etatOperation) {
         return operationFraisGenerauxService.updateOperationFraisGenraux(id, matriculeValidateur, dateValidation, etatOperation);
+    }
+
+    @GetMapping("/all")
+    public List<OperationFraisGeneraux> getAllOperations() {
+        return operationFraisGenerauxService.getAllOperations();
     }
 }

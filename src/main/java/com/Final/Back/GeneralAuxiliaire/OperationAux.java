@@ -1,21 +1,19 @@
-package com.Final.Back.FraisAuxiliaire;
+package com.Final.Back.GeneralAuxiliaire;
 
 import com.Final.Back.OperationFraisGeneraux.OperationFraisGeneraux;
-import com.Final.Back.OperationCtx.OperationCtx;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
-import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 @Getter
 @Setter
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Entity
-public class FraisAuxiliaire extends OperationFraisGeneraux {
-
+public class OperationAux extends OperationFraisGeneraux {
 
     @Column(name ="typeAuxiliaire")
     private String typeAuxiliaire;
@@ -35,7 +33,6 @@ public class FraisAuxiliaire extends OperationFraisGeneraux {
     private String prenomAuxiliaire;
     @Column(name ="numAffaireCTX")
     private Float numAffaireCTX;
-    @Column(name ="nomBeneficiairePaiment")
-    private String nomBeneficiairePaiment;
+
 
 }

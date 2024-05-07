@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class OperationFraisGenerauxServiceImpl implements OperationFraisGenerauxService {
@@ -60,5 +61,9 @@ public class OperationFraisGenerauxServiceImpl implements OperationFraisGeneraux
             return operationFraisGenerauxRepo.save(operation);
         }
         return null;
+    }
+    @Override
+    public List<OperationFraisGeneraux> getAllOperations() {
+        return operationFraisGenerauxRepo.findAll();
     }
 }

@@ -23,13 +23,8 @@ public class OperationFraisInitiesCTX extends OperationCtx {
     private String typePiece;
     @Column(name = "numeroPiece")
     private Long numeroPiece;
-    @Column(name ="RIB")
-    private Long rib;
     @Column(name ="dateValeurCTX")
     private LocalDate dateValeurCTX;
-
-    @Column(name ="numAffaireCTX")
-    private Float numAffaireCTX;
     @Column(name ="matriculeEmploye")
     private String matriculeEmploye;
 
