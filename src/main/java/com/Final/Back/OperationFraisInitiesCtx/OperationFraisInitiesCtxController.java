@@ -1,10 +1,12 @@
 package com.Final.Back.OperationFraisInitiesCtx;
 
+import com.Final.Back.Dto.updateDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @RestController
 @RequestMapping("/agent/operations-frais-inities")
@@ -29,10 +31,13 @@ public class OperationFraisInitiesCtxController {
     }
 
     @PutMapping("/{id}")
-    public OperationFraisInitiesCTX updateOperationFraisGenraux(@PathVariable Long id, @RequestParam String matriculeValidateur,
-                                                                @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateValidation,
-                                                                @RequestParam String etatOperation) {
-        return operationFraisInitiesCtxService.updateOperationFraisGenraux(id, matriculeValidateur, dateValidation, etatOperation);
+    public OperationFraisInitiesCTX updateOperationFraisGenraux(@PathVariable Long id, @RequestBody updateDto u) {
+        return operationFraisInitiesCtxService.updateOperationFraisGenraux(id, u.getMatriculeValidateur(), u.getDateValidation(), u.getEtatOperation());
+    }
+
+    @GetMapping("/validation")
+    public List<OperationFraisInitiesCTX> getOperationsSansMatriculeValidateur() {
+        return operationFraisInitiesCtxService.getOperationsSansMatriculeValidateur();
     }
 
 }

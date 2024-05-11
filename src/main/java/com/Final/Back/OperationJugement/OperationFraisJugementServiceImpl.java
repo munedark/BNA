@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class OperationFraisJugementServiceImpl implements OperationFraisJugementService {
@@ -65,8 +66,12 @@ public class OperationFraisJugementServiceImpl implements OperationFraisJugement
             return null;
         }
 
-
-
+    public List<OperationFraisJugement> getOperationsSansMatriculeValidateur() {
+        return operationFraisJugementRepo.findByMatriculeValidateurIsNull();
+    }
+    public List<OperationFraisJugement> findAll() {
+        return operationFraisJugementRepo.findAll();
+    }
 
     @Override
     public void deleteOperationFraisJugement(Long id) {

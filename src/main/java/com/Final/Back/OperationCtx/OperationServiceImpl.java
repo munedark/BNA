@@ -80,6 +80,19 @@ public class OperationServiceImpl implements OperationService {
     }
 
 
+    @Override
+    public List<OperationCtx> getOperationsWithNullMatriculeValidateurAndNotNullVirementTelecomponse() {
+        return operationRepo.findByMatriculeValidateurIsNullAndVirementTelecomponseIsNotNull();
+    }
 
+    @Override
+    public List<OperationCtx> getOperationsWithNullMatriculeValidateurAndNotNullCheque() {
+        return operationRepo.findByMatriculeValidateurIsNullAndChequeIsNotNull();
+    }
+
+    @Override
+    public List<OperationCtx> getOperationsWithNullMatriculeValidateurAndNotNullFormeAffectation() {
+        return operationRepo.findByMatriculeValidateurIsNullAndFormeAffectationIsNotNull();
+    }
 
 }

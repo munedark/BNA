@@ -1,6 +1,15 @@
 package com.Final.Back.Modles.AuxiliaireConvontionne;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
+@AllArgsConstructor
+@RequiredArgsConstructor
+@Getter
+@Setter
 @Inheritance(strategy = InheritanceType.JOINED)
 @Entity
 public class Auxiliaire {

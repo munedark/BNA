@@ -45,7 +45,7 @@ public class VirementTelecomponseServiceImpl implements VirementTelecomponseServ
     public void deleteVirement(Long id) {
         virementRepository.deleteById(id);
     }
-//    public void validerVirement(VirementTelecomponse virement){
+//    public void validerVirement(VirementTelecomponse virement) {
 //
 //        virement.setValidation("validé");
 //        virementRepository.save(virement);

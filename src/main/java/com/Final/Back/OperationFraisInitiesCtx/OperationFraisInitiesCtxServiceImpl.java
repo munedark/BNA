@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class OperationFraisInitiesCtxServiceImpl implements OperationFraisInitiesCtxService {
@@ -68,6 +69,9 @@ public class OperationFraisInitiesCtxServiceImpl implements OperationFraisInitie
         return null;
     }
 
+    public List<OperationFraisInitiesCTX> getOperationsSansMatriculeValidateur() {
+        return operationFraisInitiesCtxRepo.findByMatriculeValidateurIsNull();
+    }
     @Override
     public void deleteOperation(Long id) {
         operationFraisInitiesCtxRepo.deleteById(id);

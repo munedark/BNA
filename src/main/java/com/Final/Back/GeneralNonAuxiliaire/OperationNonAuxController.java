@@ -1,5 +1,6 @@
 package com.Final.Back.GeneralNonAuxiliaire;
 
+import com.Final.Back.Dto.updateDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,10 +30,14 @@ public class OperationNonAuxController {
     }
 
     @PutMapping("/{id}")
-    public OperationNonAux updateOperationNonAux(@PathVariable Long id, @RequestBody OperationNonAux updatedOperationNonAux) {
-        return operationNonAuxService.updateOperationNonAux(id, updatedOperationNonAux);
+    public OperationNonAux updateOperationFraisGenraux(@PathVariable Long id, @RequestBody updateDto u) {
+        return operationNonAuxService.updateOperationFraisGenraux(id, u.getMatriculeValidateur(), u.getDateValidation(), u.getEtatOperation());
     }
 
+    @GetMapping("/validation")
+    public List<OperationNonAux> getOperationsSansMatriculeValidateur() {
+        return operationNonAuxService.getOperationsSansMatriculeValidateur();
+    }
     @DeleteMapping("/{id}")
     public void deleteOperationNonAux(@PathVariable Long id) {
         operationNonAuxService.deleteOperationNonAux(id);

@@ -45,8 +45,8 @@ public class OperationController {
         return operationService.updateOperationByCheque(id, matriculeValidateur, dateValidation, etatOperation);
     }
 
-    @PutMapping("/{id}/update-virement")
-    public void updateOperationVirement(@PathVariable Long id, @RequestBody OperationCtx operation) {
+    @PutMapping("/update/virement")
+    public void updateOperationVirement( @RequestBody OperationCtx operation) {
         operationService.updateOperationVirement(operation);
     }
 
@@ -55,4 +55,18 @@ public class OperationController {
         return operationService.OperationVirementValide();
     }
 
+    @GetMapping("/virementNonValide")
+    public List<OperationCtx> getOperationsWithNullMatriculeValidateurAndNotNullVirementTelecomponse() {
+        return operationService.getOperationsWithNullMatriculeValidateurAndNotNullVirementTelecomponse();
+    }
+
+    @GetMapping("/chequeNonValide")
+    public List<OperationCtx> getOperationsWithNullMatriculeValidateurAndNotNullCheque() {
+        return operationService.getOperationsWithNullMatriculeValidateurAndNotNullCheque();
+    }
+
+    @GetMapping("/forme-affectationNonValide")
+    public List<OperationCtx> getOperationsWithNullMatriculeValidateurAndNotNullFormeAffectation() {
+        return operationService.getOperationsWithNullMatriculeValidateurAndNotNullFormeAffectation();
+    }
 }

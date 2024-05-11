@@ -12,4 +12,7 @@ public interface OperationService {
     void updateOperationVirement(OperationCtx operation);
     List<OperationCtx> OperationVirementValide();
 
+    List<OperationCtx> getOperationsWithNullMatriculeValidateurAndNotNullVirementTelecomponse();
+    List<OperationCtx> getOperationsWithNullMatriculeValidateurAndNotNullCheque();
+    List<OperationCtx> getOperationsWithNullMatriculeValidateurAndNotNullFormeAffectation();
 }
