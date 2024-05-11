@@ -11,6 +11,7 @@ import com.Final.Back.Services.UtilisateursServ.ClientServ;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -31,7 +32,7 @@ public class RechercheServiceImpl implements RechercheService {
             String nom = dossierDebiteur.getCompteBancaire().getClient().getNom();
             String prenom = dossierDebiteur.getCompteBancaire().getClient().getPrenom();
             boolean etat_CTX = dossierDebiteur.isEtat_CTX();
-            Date dateTransfert = dossierDebiteur.getDateTransfert();
+            LocalDate dateTransfert = dossierDebiteur.getDateTransfert();
             float soldeRecouvrement = dossierDebiteur.getSoldeRecouvrement();
 
             return new DebiteurInfo(numCtx,nom, prenom, etat_CTX, dateTransfert, soldeRecouvrement);
