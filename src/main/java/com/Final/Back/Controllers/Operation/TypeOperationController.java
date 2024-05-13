@@ -30,8 +30,12 @@ public class TypeOperationController {
     }
 
     @GetMapping("/libelle/{libelle}")
-    public Optional<TypeOperation> getTypeOperationBylibelle(@PathVariable String libelle) {
+    public Optional<TypeOperation> getTypeOperationByLibelle(@PathVariable String libelle) {
         return typeOperationService.getTypeOperationBylibelle(libelle);
+    }
+    @GetMapping("/numero/{numero}")
+    public Optional<TypeOperation> getTypeOperationByNumero(@PathVariable String numero) {
+        return typeOperationService.getTypeOperationByNumero(numero);
     }
 
     @PostMapping("/add")

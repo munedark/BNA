@@ -11,4 +11,5 @@ public interface TypeOperationService {
     Optional<TypeOperation> getTypeOperationBylibelle(String libelle);
     TypeOperation saveTypeOperation(TypeOperation typeOperation);
     void deleteTypeOperationById(int id);
+    Optional<TypeOperation> getTypeOperationByNumero(String numero);
 }

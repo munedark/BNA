@@ -24,10 +24,6 @@ public class OperationNonAuxController {
         return operationNonAuxService.getOperationNonAuxById(id);
     }
 
-    @GetMapping("/all")
-    public List<OperationNonAux> getAllOperationNonAux() {
-        return operationNonAuxService.getAllOperationNonAux();
-    }
 
     @PutMapping("/{id}")
     public OperationNonAux updateOperationFraisGenraux(@PathVariable Long id, @RequestBody updateDto u) {
@@ -43,4 +39,8 @@ public class OperationNonAuxController {
         operationNonAuxService.deleteOperationNonAux(id);
     }
 
+    @GetMapping("/all")
+    public List<OperationNonAux> getAllOperations() {
+        return operationNonAuxService.getAllOperations();
+    }
 }

@@ -68,7 +68,9 @@ public class OperationFraisInitiesCtxServiceImpl implements OperationFraisInitie
         }
         return null;
     }
-
+    public List<OperationFraisInitiesCTX> getAllOperations() {
+        return operationFraisInitiesCtxRepo.findAll();
+    }
     public List<OperationFraisInitiesCTX> getOperationsSansMatriculeValidateur() {
         return operationFraisInitiesCtxRepo.findByMatriculeValidateurIsNull();
     }

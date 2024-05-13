@@ -58,4 +58,7 @@ public class OperationAuxServieImpl implements OperationAuxService {
     public void deleteOperationAux(Long id) {
         operationAuxRepo.deleteById(id);
     }
+    public List<OperationAux> getAllOperations() {
+        return operationAuxRepo.findAll();
+    }
 }

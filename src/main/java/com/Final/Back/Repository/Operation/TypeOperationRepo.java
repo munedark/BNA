@@ -10,4 +10,5 @@
     @Repository
     public interface TypeOperationRepo extends JpaRepository<TypeOperation,Integer> {
         Optional<TypeOperation> findByLibelleOperation(String libelleOperation);
+        Optional<TypeOperation> findByNumeroType(String numero);
     }

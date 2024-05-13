@@ -35,4 +35,8 @@ public class OperationAuxController {
     public void deleteOperationAux(@PathVariable Long id) {
         operationAuxService.deleteOperationAux(id);
     }
+    @GetMapping("/all")
+    public List<OperationAux> getAllOperations() {
+        return operationAuxService.getAllOperations();
+    }
 }

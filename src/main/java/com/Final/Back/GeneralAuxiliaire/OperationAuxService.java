@@ -10,4 +10,5 @@ public interface OperationAuxService {
 
     void deleteOperationAux(Long id);
     List<OperationAux> getOperationsSansMatriculeValidateur();
+    List<OperationAux> getAllOperations();
 }

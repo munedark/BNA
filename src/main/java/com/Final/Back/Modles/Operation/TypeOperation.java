@@ -18,4 +18,7 @@ public class TypeOperation {
     private int idOperation;
     @Column(name = "libellOperation", unique = true)
     private String libelleOperation;
+    @Column(name = "numeroType",unique = true)
+    private String numeroType;
+
 }

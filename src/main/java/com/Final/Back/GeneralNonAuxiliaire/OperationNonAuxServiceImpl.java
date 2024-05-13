@@ -20,10 +20,7 @@ public class OperationNonAuxServiceImpl implements OperationNonAuxService {
     }
 
 
-    @Override
-    public List<OperationNonAux> getAllOperationNonAux() {
-        return operationNonAuxRepo.findAll();
-    }
+
     @Override
     public OperationNonAux getOperationNonAuxById(Long id) {
         return operationNonAuxRepo.findById(id).orElse(null);
@@ -58,5 +55,8 @@ public class OperationNonAuxServiceImpl implements OperationNonAuxService {
     @Override
     public void deleteOperationNonAux(Long id) {
         operationNonAuxRepo.deleteById(id);
+    }
+    public List<OperationNonAux> getAllOperations() {
+        return operationNonAuxRepo.findAll();
     }
 }

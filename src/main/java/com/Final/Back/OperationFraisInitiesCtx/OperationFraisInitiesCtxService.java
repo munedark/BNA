@@ -9,5 +9,5 @@ public interface OperationFraisInitiesCtxService {
     OperationFraisInitiesCTX updateOperationFraisGenraux(Long id, String matriculeValidateur, LocalDate dateValidation, String etatOperation);
     void deleteOperation(Long id);
     List<OperationFraisInitiesCTX> getOperationsSansMatriculeValidateur();
-
+    List<OperationFraisInitiesCTX> getAllOperations();
 }

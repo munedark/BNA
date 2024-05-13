@@ -39,5 +39,9 @@ public class OperationFraisInitiesCtxController {
     public List<OperationFraisInitiesCTX> getOperationsSansMatriculeValidateur() {
         return operationFraisInitiesCtxService.getOperationsSansMatriculeValidateur();
     }
+    @GetMapping("/all")
+    public List<OperationFraisInitiesCTX> getAllOperations() {
+        return operationFraisInitiesCtxService.getAllOperations();
+    }
 
 }
