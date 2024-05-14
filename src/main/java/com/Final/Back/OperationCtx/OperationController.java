@@ -68,4 +68,8 @@ public class OperationController {
     public List<OperationCtx> getOperationsWithNullMatriculeValidateurAndNotNullFormeAffectation() {
         return operationService.getOperationsWithNullMatriculeValidateurAndNotNullFormeAffectation();
     }
+    @GetMapping("/cheque/all")
+    public List<OperationCtx> getOperationCheque(){
+        return operationService.getOperationCheque();
+    }
 }

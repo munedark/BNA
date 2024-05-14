@@ -21,39 +21,52 @@ import java.util.Date;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class OperationCtx {
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "OperationCtx_id_Sequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "OperationCtx_id_Sequence")
     @SequenceGenerator(name = "OperationCtx_id_Sequence", sequenceName = "OPERATIONCTX_ID_SEQ")
-    @Column(name="idOperation",nullable=false,unique=true)
+    @Column(name = "idOperation", nullable = false, unique = true)
     private Long idOperationCtx;
-    @Column(name ="dateOperation")
+
+
+    @Column(name = "dateOperation")
     private LocalDate dateOperation;
-    @Column(name ="dateAjout")
+
+
+    @Column(name = "dateAjout")
     private LocalDate dateAjout;
-    @Column(name ="matriculeAjout")
+
+    @Column(name = "matriculeAjout")
     private String matriculeAjout;
-    @Column(name ="matriculeValidateur")
+
+    @Column(name = "matriculeValidateur")
     private String matriculeValidateur;
+
     @JsonFormat(pattern = "yyyy-MM-dd")
-    @Column(name ="dateValidation")
+    @Column(name = "dateValidation")
     private LocalDate dateValidation;
-    @Column(name ="etatOperation")
+
+    @Column(name = "etatOperation")
     private String etatOperation;
+
     @ManyToOne
-    @JoinColumn(name = "Operation_id", referencedColumnName = "idType" )
+    @JoinColumn(name = "Operation_id", referencedColumnName = "idType")
     private TypeOperation typeOperation;
+
     @OneToOne
-    private TypePaiment typePaiments ;
+    private TypePaiment typePaiments;
+
     @ManyToOne
-    @JoinColumn(name = "Risque_id", referencedColumnName = "id" )
+    @JoinColumn(name = "Risque_id", referencedColumnName = "id")
     private Risque risque;
+
     @ManyToOne
     private DossierDebiteur dossierDebiteur;
+
     @OneToOne
     private Cheque cheque;
+
     @OneToOne
     private VirementTelecomponse virementTelecomponse;
+
     @OneToOne
     private FormeAffectation formeAffectation;
-
 }
-

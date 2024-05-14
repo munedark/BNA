@@ -9,19 +9,24 @@ import com.Final.Back.Repository.Risque.RisqueRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 
 @Service
 public class OperationServiceImpl implements OperationService {
+    private final OperationRepo operationRepo;
+    private final VirementTelecomponseRepo virementRepository;
+    private final RisqueRepo risqueRepo;
+    private final DossierDebiteurRepo dossierDebiteurRepo;
+
     @Autowired
-    private OperationRepo operationRepo;
-    @Autowired
-    VirementTelecomponseRepo virementRepository;
-    @Autowired
-    RisqueRepo risqueRepo;
-    @Autowired
-    DossierDebiteurRepo dossierDebiteurRepo;
+    public OperationServiceImpl(OperationRepo operationRepo, VirementTelecomponseRepo virementRepository, RisqueRepo risqueRepo, DossierDebiteurRepo dossierDebiteurRepo) {
+        this.operationRepo = operationRepo;
+        this.virementRepository = virementRepository;
+        this.risqueRepo = risqueRepo;
+        this.dossierDebiteurRepo = dossierDebiteurRepo;
+    }
 
     @Override
     public OperationCtx saveOperation(OperationCtx operationCtx) {
@@ -49,7 +54,7 @@ public class OperationServiceImpl implements OperationService {
             DossierDebiteur dossierDebiteur = operation.getDossierDebiteur();
             Cheque cheque = operation.getCheque();
 
-            if (cheque != null && etatOperation.equals("V") && dossierDebiteur != null) {
+            if (cheque != null && "V".equals(etatOperation) && dossierDebiteur != null) {
                 float newSoldeRecouvrement = dossierDebiteur.getSoldeRecouvrement() - cheque.getMntCheque();
                 dossierDebiteur.setSoldeRecouvrement(newSoldeRecouvrement);
 
@@ -61,24 +66,25 @@ public class OperationServiceImpl implements OperationService {
         return null;
     }
 
-    public  void updateOperationVirement(OperationCtx operation){
+    @Transactional
+    public void updateOperationVirement(OperationCtx operation) {
         operationRepo.save(operation);
         operation.getVirementTelecomponse().setValidation("validé");
         virementRepository.save(operation.getVirementTelecomponse());
+
         DossierDebiteur dossierDebiteur = operation.getDossierDebiteur();
-        VirementTelecomponse virementTelecomponse=operation.getVirementTelecomponse();
-        float newSoldeRecouvrement = dossierDebiteur.getSoldeRecouvrement() - virementTelecomponse.getMontantVirement();
-        dossierDebiteur.setSoldeRecouvrement(newSoldeRecouvrement);
-
-        dossierDebiteurRepo.save(dossierDebiteur);
-
+        VirementTelecomponse virementTelecomponse = operation.getVirementTelecomponse();
+        if (dossierDebiteur != null && virementTelecomponse != null) {
+            float newSoldeRecouvrement = dossierDebiteur.getSoldeRecouvrement() - virementTelecomponse.getMontantVirement();
+            dossierDebiteur.setSoldeRecouvrement(newSoldeRecouvrement);
+            dossierDebiteurRepo.save(dossierDebiteur);
+        }
     }
 
     @Override
     public List<OperationCtx> OperationVirementValide() {
         return operationRepo.findOperationsWithValidatedVirement();
     }
-
 
     @Override
     public List<OperationCtx> getOperationsWithNullMatriculeValidateurAndNotNullVirementTelecomponse() {
@@ -95,4 +101,8 @@ public class OperationServiceImpl implements OperationService {
         return operationRepo.findByMatriculeValidateurIsNullAndFormeAffectationIsNotNull();
     }
 
+    @Override
+    public List<OperationCtx> getOperationCheque() {
+        return operationRepo.findByChequeIsNotNull();
+    }
 }

@@ -15,4 +15,5 @@ public interface OperationService {
     List<OperationCtx> getOperationsWithNullMatriculeValidateurAndNotNullVirementTelecomponse();
     List<OperationCtx> getOperationsWithNullMatriculeValidateurAndNotNullCheque();
     List<OperationCtx> getOperationsWithNullMatriculeValidateurAndNotNullFormeAffectation();
+    List<OperationCtx> getOperationCheque();
 }
