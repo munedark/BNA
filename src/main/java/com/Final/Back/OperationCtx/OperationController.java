@@ -1,5 +1,6 @@
 package com.Final.Back.OperationCtx;
 
+import com.Final.Back.Dto.updateDto;
 import com.Final.Back.Modles.DossierDebiteur.DossierDebiteur;
 import com.Final.Back.Modles.Operation.*;
 import com.Final.Back.Modles.Risques.Risque;
@@ -38,11 +39,9 @@ public class OperationController {
         operationService.deleteOperation(id);
     }
 
-    @PutMapping("/{id}/update-by-cheque")
-    public OperationCtx updateOperationByCheque(@PathVariable Long id, @RequestParam String matriculeValidateur,
-                                                @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateValidation,
-                                                @RequestParam String etatOperation) {
-        return operationService.updateOperationByCheque(id, matriculeValidateur, dateValidation, etatOperation);
+    @PutMapping("/update-by-cheque/{id}")
+    public OperationCtx updateOperationByCheque(@PathVariable Long id, @RequestBody updateDto u) {
+        return operationService.updateOperationByCheque(id, u.getMatriculeValidateur(), u.getDateValidation(), u.getEtatOperation());
     }
 
     @PutMapping("/update/virement")

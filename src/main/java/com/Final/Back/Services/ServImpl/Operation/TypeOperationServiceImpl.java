@@ -35,7 +35,7 @@ public class TypeOperationServiceImpl implements TypeOperationService {
     }
     @Override
     public Optional<TypeOperation> getTypeOperationByNumero(String numero) {
-        return typeOperationRepo.findByLibelleOperation(numero);
+        return typeOperationRepo.findByNumeroType(numero);
     }
 
     @Override
