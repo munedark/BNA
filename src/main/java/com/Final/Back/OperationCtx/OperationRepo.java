@@ -14,7 +14,7 @@ public interface OperationRepo extends JpaRepository<OperationCtx, Long> {
 
     List<OperationCtx> findByMatriculeValidateurIsNullAndVirementTelecomponseIsNotNull();
     List<OperationCtx> findByMatriculeValidateurIsNullAndChequeIsNotNull();
-    List<OperationCtx> findByMatriculeValidateurIsNullAndFormeAffectationIsNotNull(); // This should now work correctly
+    List<OperationCtx> findByMatriculeValidateurIsNullAndFormeAffectationIsNotNull();
 
     List<OperationCtx> findByChequeIsNotNull();
 }
