@@ -24,7 +24,7 @@ public class OperationAuxController {
 
     @PutMapping("/{id}")
     public OperationAux updateOperationFraisGenraux(@PathVariable Long id, @RequestBody updateDto u) {
-        return operationAuxService.updateOperationFraisGenraux(id, u.getMatriculeValidateur(), u.getDateValidation(), u.getEtatOperation());
+        return operationAuxService.updateOperationFraisGenraux(id, u.getMatriculeValidateur(), u.getDateValidation(), u.getEtatOperation(),u.getRisque());
     }
     @GetMapping("/validation")
     public List<OperationAux> getOperationsSansMatriculeValidateur() {

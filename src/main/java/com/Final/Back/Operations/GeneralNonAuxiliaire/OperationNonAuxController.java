@@ -27,7 +27,7 @@ public class OperationNonAuxController {
 
     @PutMapping("/{id}")
     public OperationNonAux updateOperationFraisGenraux(@PathVariable Long id, @RequestBody updateDto u) {
-        return operationNonAuxService.updateOperationFraisGenraux(id, u.getMatriculeValidateur(), u.getDateValidation(), u.getEtatOperation());
+        return operationNonAuxService.updateOperationFraisGenraux(id, u.getMatriculeValidateur(), u.getDateValidation(), u.getEtatOperation(),u.getRisque());
     }
 
     @GetMapping("/validation")

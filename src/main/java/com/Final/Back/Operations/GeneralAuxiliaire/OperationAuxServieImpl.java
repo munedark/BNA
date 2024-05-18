@@ -3,7 +3,9 @@ package com.Final.Back.Operations.GeneralAuxiliaire;
 
 
 import com.Final.Back.Modles.DossierDebiteur.DossierDebiteur;
+import com.Final.Back.Modles.Risques.Risque;
 import com.Final.Back.Repository.DossierDebiteur.DossierDebiteurRepo;
+import com.Final.Back.Repository.Risque.RisqueRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,8 @@ public class OperationAuxServieImpl implements OperationAuxService {
     private OperationAuxRepo operationAuxRepo;
     @Autowired
     private DossierDebiteurRepo dossierDebiteurRepo;
+    @Autowired
+    private RisqueRepo risqueRepo;
 
     public OperationAux saveOperationAux(OperationAux OperationAux) {
         return operationAuxRepo.save(OperationAux);
@@ -28,7 +32,7 @@ public class OperationAuxServieImpl implements OperationAuxService {
 
 
     @Override
-    public OperationAux updateOperationFraisGenraux(Long id, String matriculeValidateur, LocalDate dateValidation, String etatOperation) {
+    public OperationAux updateOperationFraisGenraux(Long id, String matriculeValidateur, LocalDate dateValidation, String etatOperation, Risque risque) {
         OperationAux operation = operationAuxRepo.findById(id).orElse(null);
         if (operation != null) {
 
@@ -36,14 +40,17 @@ public class OperationAuxServieImpl implements OperationAuxService {
             operation.setDateValidation(dateValidation);
             operation.setEtatOperation(etatOperation);
 
-            DossierDebiteur dossierDebiteur = operation.getDossierDebiteur();
-            if (dossierDebiteur != null && etatOperation.equals("V")) {
 
-                float newSoldeRecouvrement = dossierDebiteur.getSoldeRecouvrement() + operation.getMntFrais();
-                dossierDebiteur.setSoldeRecouvrement(newSoldeRecouvrement);
+            if (risque != null && etatOperation.equals("V")) {
 
-                dossierDebiteurRepo.save(dossierDebiteur);
+                float newMntFrais = risque.getMntFrais() + operation.getMntFrais();
+                float newSoldePrincipaleRisque = risque.getSoldePrincipaleRisque() + operation.getMntFrais();
+                risque.setMntFrais(newMntFrais);
+                risque.setSoldePrincipaleRisque(newSoldePrincipaleRisque);
+
+                risqueRepo.save(risque);
             }
+            operation.setRisque(risque);
 
 
             return operationAuxRepo.save(operation);

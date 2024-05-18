@@ -1,7 +1,9 @@
 package com.Final.Back.Operations.GeneralNonAuxiliaire;
 import com.Final.Back.Modles.DossierDebiteur.DossierDebiteur;
 import com.Final.Back.Modles.Risques.Risque;
+import com.Final.Back.Operations.GeneralAuxiliaire.OperationAux;
 import com.Final.Back.Repository.DossierDebiteur.DossierDebiteurRepo;
+import com.Final.Back.Repository.Risque.RisqueRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +16,8 @@ public class OperationNonAuxServiceImpl implements OperationNonAuxService {
     private DossierDebiteurRepo dossierDebiteurRepo;
     @Autowired
     private OperationNonAuxRepo operationNonAuxRepo;
-
+    @Autowired
+    private RisqueRepo risqueRepo;
     @Override
     public OperationNonAux saveOperationNonAux(OperationNonAux operationNonAux) {
         return operationNonAuxRepo.save(operationNonAux);
@@ -28,7 +31,7 @@ public class OperationNonAuxServiceImpl implements OperationNonAuxService {
     }
 
     @Override
-    public OperationNonAux updateOperationFraisGenraux(Long id, String matriculeValidateur, LocalDate dateValidation, String etatOperation) {
+    public OperationNonAux updateOperationFraisGenraux(Long id, String matriculeValidateur, LocalDate dateValidation, String etatOperation,Risque risque) {
         OperationNonAux operation = operationNonAuxRepo.findById(id).orElse(null);
         if (operation != null) {
 
@@ -36,14 +39,17 @@ public class OperationNonAuxServiceImpl implements OperationNonAuxService {
             operation.setDateValidation(dateValidation);
             operation.setEtatOperation(etatOperation);
 
-            DossierDebiteur dossierDebiteur = operation.getDossierDebiteur();
-            if (dossierDebiteur != null && etatOperation.equals("V")) {
 
-                float newSoldeRecouvrement = dossierDebiteur.getSoldeRecouvrement() + operation.getMntFrais();
-                dossierDebiteur.setSoldeRecouvrement(newSoldeRecouvrement);
+            if (risque != null && etatOperation.equals("V")) {
 
-                dossierDebiteurRepo.save(dossierDebiteur);
+                float newMntFrais = risque.getMntFrais() + operation.getMntFrais();
+                float newSoldePrincipaleRisque = risque.getSoldePrincipaleRisque() + operation.getMntFrais();
+                risque.setMntFrais(newMntFrais);
+                risque.setSoldePrincipaleRisque(newSoldePrincipaleRisque);
+
+                risqueRepo.save(risque);
             }
+            operation.setRisque(risque);
 
 
             return operationNonAuxRepo.save(operation);

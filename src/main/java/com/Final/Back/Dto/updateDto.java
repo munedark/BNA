@@ -1,5 +1,6 @@
 package com.Final.Back.Dto;
 
+import com.Final.Back.Modles.Risques.Risque;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,4 +14,5 @@ public class updateDto {
     private String matriculeValidateur;
     private LocalDate dateValidation;
     private String etatOperation;
+    private Risque risque;
 }
