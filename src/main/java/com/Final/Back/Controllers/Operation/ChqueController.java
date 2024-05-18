@@ -3,6 +3,7 @@ package com.Final.Back.Controllers.Operation;
 import com.Final.Back.Modles.Operation.Cheque;
 import com.Final.Back.Services.OperationServ.ChequeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,8 +38,10 @@ public class ChqueController {
         chequeService.deleteChequeById(id);
     }
 
-//    @PutMapping("/update/{id}")
-//    public Cheque updateCheque(@PathVariable Long id, @RequestBody Cheque updatedCheque) {
-//        return chequeService.updateCheque(id, updatedCheque);
-//    }
+    @GetMapping("/get/numCheque/{numCheque}")
+    public ResponseEntity<Cheque> getChequeByNumCheque(@PathVariable Long numCheque) {
+        Optional<Cheque> cheque = chequeService.getChequeByNumCheque(numCheque);
+        return cheque.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
 }

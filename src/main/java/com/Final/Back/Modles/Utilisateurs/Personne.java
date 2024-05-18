@@ -2,7 +2,7 @@ package com.Final.Back.Modles.Utilisateurs;
 
 import javax.persistence.*;
 
-import com.Final.Back.OperationCtx.OperationCtx;
+import com.Final.Back.Operations.OperationCtx.OperationCtx;
 import lombok.*;
 
 import java.util.Set;

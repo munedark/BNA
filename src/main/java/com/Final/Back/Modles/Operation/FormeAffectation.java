@@ -19,8 +19,8 @@ public class FormeAffectation {
     private Long idAffectation;
     String typeRecouvrement;
     float mntAffectationPrincipale;
-    float mntFrais;
     LocalDate dateAffectation;
+    String typeAffectation;
 
 
 }

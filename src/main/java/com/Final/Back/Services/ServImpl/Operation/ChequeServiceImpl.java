@@ -35,4 +35,8 @@ public class ChequeServiceImpl implements ChequeService {
     public void deleteChequeById(Long id) {
         chequeRepository.deleteById(id);
     }
+    @Override
+    public Optional<Cheque> getChequeByNumCheque(Long numCheque) {
+        return chequeRepository.findByNumCheque(numCheque);
+    }
 }

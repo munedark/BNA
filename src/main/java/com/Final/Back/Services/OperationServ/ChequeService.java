@@ -10,5 +10,5 @@ public interface ChequeService {
     Optional<Cheque> getChequeById(Long id);
     List<Cheque> getAllCheques();
     void deleteChequeById(Long id);
-
+    Optional<Cheque> getChequeByNumCheque(Long numCheque);
 }
