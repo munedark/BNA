@@ -10,4 +10,5 @@ public interface RisqueService {
     Optional<Risque> getRisqueById(Long id);
     Risque saveRisque(Risque risque);
     void deleteRisqueById(Long id);
+    List<Risque> getRisquesWithZeroSoldeIrIc();
 }

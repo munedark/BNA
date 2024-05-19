@@ -38,4 +38,9 @@ public class RisqueController {
     public void deleteRisqueById(@PathVariable Long id) {
         risqueService.deleteRisqueById(id);
     }
+
+    @GetMapping("/risqueNull")
+    public List<Risque> getRisquesWithZeroSoldeIrIc() {
+        return risqueService.getRisquesWithZeroSoldeIrIc();
+    }
 }

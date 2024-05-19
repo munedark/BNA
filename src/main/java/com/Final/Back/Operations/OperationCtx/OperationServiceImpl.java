@@ -98,9 +98,7 @@ public class OperationServiceImpl implements OperationService {
                         case "IC":
                             risque.setIc(risque.getIc() - montant);
                             break;
-                        default:
-                            // gérer les cas non attendus si nécessaire
-                            break;
+
                     }
                 }
             }
@@ -178,8 +176,9 @@ public class OperationServiceImpl implements OperationService {
 
     public void clotureRisque(OperationCtx operation,Risque risque,String typeCloture) {
         operationRepo.save(operation);
-        if (risque.getStade()=="4- Cloturé" && risque.getMntEntreePrincipale()==0 && risque.getIr()==0 && risque.getIc()==0)
+        if (risque.getMntEntreePrincipale()==0 && risque.getIr()==0 && risque.getIc()==0)
         {
+            risque.setStade("4- Cloturé");
             risque.setTypeCloture(typeCloture);
         }
         risqueRepo.save(risque);
