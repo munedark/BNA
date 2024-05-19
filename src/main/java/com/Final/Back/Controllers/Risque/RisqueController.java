@@ -39,8 +39,8 @@ public class RisqueController {
         risqueService.deleteRisqueById(id);
     }
 
-    @GetMapping("/risqueNull")
-    public List<Risque> getRisquesWithZeroSoldeIrIc() {
-        return risqueService.getRisquesWithZeroSoldeIrIc();
+    @GetMapping("/risqueNonCloture")
+    public List<Risque> getRisquesWithZeroSoldeIrIcAndStadeNotCloture() {
+        return risqueService.getRisquesWithZeroSoldeIrIcAndStadeNotCloture();
     }
 }

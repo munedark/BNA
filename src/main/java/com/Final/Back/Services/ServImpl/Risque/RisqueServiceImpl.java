@@ -38,8 +38,9 @@ public class RisqueServiceImpl implements RisqueService {
     public void deleteRisqueById(Long id) {
         risqueRepo.deleteById(id);
     }
+
     @Override
-    public List<Risque> getRisquesWithZeroSoldeIrIc() {
-        return risqueRepo.findBySoldePrincipaleRisqueAndIrAndIc(0, 0, 0);
+    public List<Risque> getRisquesWithZeroSoldeIrIcAndStadeNotCloture() {
+        return risqueRepo.findBySoldePrincipaleRisqueAndIrAndIcAndStadeNot(0, 0, 0, "4- Cloturé");
     }
 }

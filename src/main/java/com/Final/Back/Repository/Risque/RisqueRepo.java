@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface RisqueRepo extends JpaRepository<Risque,Long> {
-    List<Risque> findBySoldePrincipaleRisqueAndIrAndIc(float soldePrincipaleRisque, float ir, float ic);
+public interface RisqueRepo extends JpaRepository<Risque, Long> {
+    List<Risque> findBySoldePrincipaleRisqueAndIrAndIcAndStadeNot(float soldePrincipaleRisque, float ir, float ic, String stade);
 }
