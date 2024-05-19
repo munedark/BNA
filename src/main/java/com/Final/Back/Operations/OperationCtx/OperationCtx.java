@@ -40,7 +40,7 @@ public class OperationCtx {
     @Column(name = "matriculeValidateur")
     private String matriculeValidateur;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
+
     @Column(name = "dateValidation")
     private LocalDate dateValidation;
 

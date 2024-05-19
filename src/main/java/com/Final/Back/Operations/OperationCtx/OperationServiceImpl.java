@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -81,42 +82,34 @@ public class OperationServiceImpl implements OperationService {
             FormeAffectation affectation = operation.getFormeAffectation();
 
             if (affectation != null && "V".equals(etatOperation) && dossierDebiteur != null) {
-                float newSoldeRecouvrement = dossierDebiteur.getSoldeRecouvrement() - affectation.getMntAffectationPrincipale();
-                dossierDebiteur.setSoldeRecouvrement(newSoldeRecouvrement);
+                float montant = affectation.getMntAffectationPrincipale();
 
+                dossierDebiteur.setSoldeRecouvrement(dossierDebiteur.getSoldeRecouvrement() - montant);
+
+                if (risque != null) {
+                    switch (affectation.getTypeAffectation()) {
+                        case "principale":
+                            risque.setSoldePrincipaleRisque(risque.getSoldePrincipaleRisque() - montant);
+                            break;
+                        case "IR":
+                            System.out.println("it is ir");
+                            risque.setIr(risque.getIr() - montant);
+                            break;
+                        case "IC":
+                            risque.setIc(risque.getIc() - montant);
+                            break;
+                        default:
+                            // gérer les cas non attendus si nécessaire
+                            break;
+                    }
+                }
+            }
+
+            if (dossierDebiteur != null) {
                 dossierDebiteurRepo.save(dossierDebiteur);
             }
 
-            if (affectation != null && risque != null && etatOperation.equals("V")) {
-                float newMntEntreePrincipale = risque.getMntEntreePrincipale() - affectation.getMntAffectationPrincipale();
-                if (newMntEntreePrincipale<0){
-                    newMntEntreePrincipale=0;
-                    float ir=risque.getIr();
-                    float newIR=ir-(affectation.getMntAffectationPrincipale()-risque.getMntEntreePrincipale());
-                    if(newIR>=0){risque.setIr(newIR);}
-                    if(newIR<0){
-                        risque.setIr(0);
-                        float ic=risque.getIc();
-                        float newIC=ic-((affectation.getMntAffectationPrincipale()-risque.getMntEntreePrincipale())-ir);
-                        if(newIC<0){
-                            risque.setIc(0);
-                        }
-                        if(newIC>=0){
-                            risque.setIc(newIC);
-                        }
-                    }
-                }
-
-                if(risque.getMntFrais()<0){
-                    risque.setMntFrais(0);
-                }
-                if(risque.getIr()==0 && risque.getMntEntreePrincipale()==0 && risque.getIc()==0){
-                    risque.setStade("4- Cloturé");
-                }
-
-
-                risque.setMntEntreePrincipale(newMntEntreePrincipale);
-
+            if (risque != null) {
                 risqueRepo.save(risque);
             }
 
@@ -124,6 +117,7 @@ public class OperationServiceImpl implements OperationService {
         }
         return null;
     }
+
 
 
     @Transactional
