@@ -174,15 +174,10 @@ public class OperationServiceImpl implements OperationService {
     }
 
 
-    public void clotureRisque(OperationCtx operation,Risque risque,String typeCloture) {
-        operationRepo.save(operation);
-        if (risque.getMntEntreePrincipale()==0 && risque.getIr()==0 && risque.getIc()==0)
-        {
-            risque.setStade("4- Cloturé");
-            risque.setTypeCloture(typeCloture);
-        }
-        risqueRepo.save(risque);
+    public void clotureRisque(OperationCtx operation,Risque risque) {
 
+        risqueRepo.save(risque);
+        operationRepo.save(operation);
     }
 
 }

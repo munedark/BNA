@@ -20,5 +20,5 @@ public interface OperationService {
     List<OperationCtx> getOperationsWithNullMatriculeValidateurAndNotNullFormeAffectation();
     List<OperationCtx> getOperationCheque();
     void clotureDossier(OperationCtx operation);
-    void clotureRisque(OperationCtx operation, Risque risque, String typeCloture);
+    void clotureRisque(OperationCtx operation, Risque risque);
 }

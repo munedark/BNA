@@ -1,5 +1,6 @@
 package com.Final.Back.Operations.OperationCtx;
 
+import com.Final.Back.Dto.ClotureRisqueDto;
 import com.Final.Back.Dto.updateDto;
 import com.Final.Back.Modles.DossierDebiteur.DossierDebiteur;
 import com.Final.Back.Modles.Operation.*;
@@ -75,6 +76,10 @@ public class OperationController {
     @GetMapping("/cheque/all")
     public List<OperationCtx> getOperationCheque(){
         return operationService.getOperationCheque();
+    }
+    @PutMapping("/clotureRisque")
+    public void clotureRisque(@RequestBody ClotureRisqueDto crd){
+        operationService.clotureRisque(crd.getOperation(),crd.getRisque());
     }
     @PutMapping("/clotureDossier")
     public void clotureDossier(@RequestBody OperationCtx operationCtx)
