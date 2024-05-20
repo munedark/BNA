@@ -163,14 +163,8 @@ public class OperationServiceImpl implements OperationService {
         operationRepo.save(operation);
 
         DossierDebiteur dossierDebiteur = operation.getDossierDebiteur();
-        Boolean risqueNonCloture=false;
-        for (Risque risque : dossierDebiteur.getRisque()) {
-            if (risque.getStade()!="4- Cloturé"){risqueNonCloture=true;}
-        }
-        if (dossierDebiteur.getSoldeRecouvrement()==0 && risqueNonCloture==false)   {
-            dossierDebiteur.setEtat_CTX(false);
+        dossierDebiteur.setEtat_CTX(false);
             dossierDebiteurRepo.save(dossierDebiteur);
-        }
     }
 
 
