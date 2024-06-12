@@ -35,7 +35,7 @@ public class RechercheServiceImpl implements RechercheService {
             LocalDate dateTransfert = dossierDebiteur.getDateTransfert();
             float soldeRecouvrement = dossierDebiteur.getSoldeRecouvrement();
 
-            return new DebiteurInfo(numCtx,nom, prenom, etat_CTX, dateTransfert, soldeRecouvrement);
+            return new DebiteurInfo (numCtx,nom, prenom, etat_CTX, dateTransfert, soldeRecouvrement);
         }
         return null;
     }
@@ -44,10 +44,7 @@ public class RechercheServiceImpl implements RechercheService {
     public List<Risque> Risques(Long numCtx){
         DossierDebiteur dossierDebiteur = dossierDebiteurRepo.findByNumCtx(numCtx);
         if (dossierDebiteur != null) {
-            System.out.println("DossierDebiteur retrieved: " + dossierDebiteur); // Log retrieved object
-            System.out.println("Number of Risques: " + dossierDebiteur.getRisque().size()); // Log list size
 
-            // Access elements (optional, for lazy loading)
             for (Risque risque : dossierDebiteur.getRisque()) {
                 System.out.println(risque.toString());
             }

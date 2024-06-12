@@ -2,7 +2,7 @@ package com.Final.Back.Modles.Risques;
 
 import com.Final.Back.Modles.CompteBancaire.AgenceBank;
 import com.Final.Back.Modles.Journales.JournalRisque;
-import com.Final.Back.TypeCredit.TypeCredit;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -51,8 +51,6 @@ public class Risque {
     @ManyToOne
     @JoinColumn(name = "agence_bank_id", referencedColumnName = "idAgence" )
     private AgenceBank agenceBank;
-    @ManyToOne
-    @JoinColumn(name="typeCredit_id")
-    private TypeCredit typeCredit;
+
 
 }

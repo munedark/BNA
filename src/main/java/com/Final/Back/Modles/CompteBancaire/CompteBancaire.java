@@ -19,9 +19,6 @@ public class CompteBancaire {
     @Column(name = "numCompte", nullable = false, unique = true)
     private Long numCompte;
 
-    @Column(name = "solde")
-    private float solde;
-
     @ManyToOne
     @JoinColumn(name = "agence_bank_id", referencedColumnName = "idAgence" )
     private AgenceBank agenceBank;

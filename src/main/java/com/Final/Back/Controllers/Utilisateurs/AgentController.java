@@ -19,7 +19,7 @@ public class AgentController {
     public AgentBna addUser(@RequestBody AuthADto uad) {
         AgentBna u = uad.getAgent();
         Profile a = uad.getProfile();
-        return (agentServ.addAgent(u, a));
+        return (agentServ.addAgent(u,a));
     }
 
 
