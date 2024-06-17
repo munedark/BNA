@@ -38,4 +38,8 @@ public class DossierDebiteurController {
     public void deleteDossierDebiteurById(@PathVariable("id") DossierId dossierId) {
         dossierDebiteurService.deleteDossierDebiteurById(dossierId);
     }
+    @PutMapping("/resetSolde/{numCtx}")
+    public void resetSoldeRecouvrement(@PathVariable Long numCtx) {
+        dossierDebiteurService.resetSoldeRecouvrement(numCtx);
+    }
 }

@@ -4,7 +4,6 @@ import com.Final.Back.Modles.Utilisateurs.Personne;
 import lombok.*;
 
 import javax.persistence.*;
-
 @Getter
 @Setter
 @AllArgsConstructor
@@ -18,18 +17,21 @@ public class Profile {
     @SequenceGenerator(name = "id_Sequence", sequenceName = "ID_SEQ")
     @Column(name="id",nullable=false,unique=true)
     private Long id;
-    @Column(name = "username")
+
+    @Column(name = "username",unique = true)
     private String username;
+
     @Column(name = "password")
     private String password;
+
     @Column(name = "isEnabled")
     private Boolean isEnabled;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "personne_id")
     private Personne personne;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "role_id")
     private Role role;
 }

@@ -32,7 +32,7 @@ public class ClientServImpl implements ClientServ {
         user.setPrenom(client.getPrenom());
         user.setEmail(client.getEmail());
         user.setNumtele(client.getNumtele());
-
+        user.setCin(client.getCin());
         Profile account = new Profile();
         account.setUsername(profile.getUsername());
         account.setPassword(passwordEncoder.encode(profile.getPassword()));

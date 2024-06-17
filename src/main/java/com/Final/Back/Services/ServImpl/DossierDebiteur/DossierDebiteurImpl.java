@@ -7,6 +7,7 @@ import com.Final.Back.Services.DossierDebiteurServ.DossierDebiteurServ;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,4 +43,15 @@ public class DossierDebiteurImpl implements DossierDebiteurServ {
         return Optional.empty();
     }
 
+    @Override
+    @Transactional
+    public void resetSoldeRecouvrement(Long numCtx) {
+        DossierDebiteur dossier = dossierDebiteurRepo.findByNumCtx(numCtx);
+        if (dossier != null) {
+            dossier.setSoldeRecouvrement(0);
+            dossierDebiteurRepo.save(dossier);
+        } else {
+            throw new RuntimeException("Dossier non trouvé");
+        }
+    }
 }

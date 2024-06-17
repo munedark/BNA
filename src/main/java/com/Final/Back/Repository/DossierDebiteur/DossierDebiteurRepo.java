@@ -1,5 +1,6 @@
 package com.Final.Back.Repository.DossierDebiteur;
 
+import com.Final.Back.Modles.CompteBancaire.CompteBancaire;
 import com.Final.Back.Modles.DossierDebiteur.DossierDebiteur;
 import com.Final.Back.Modles.DossierDebiteur.DossierId;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,4 +11,6 @@ import org.springframework.stereotype.Repository;
 public interface DossierDebiteurRepo extends JpaRepository<DossierDebiteur, DossierId> {
     @Query("SELECT d FROM DossierDebiteur d WHERE d.dossierId.numCtx = :numCtx")
     DossierDebiteur findByNumCtx(Long numCtx);
+    DossierDebiteur findByCompteBancaire(CompteBancaire compteBancaire);
+
 }

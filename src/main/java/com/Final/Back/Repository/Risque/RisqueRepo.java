@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface RisqueRepo extends JpaRepository<Risque, Long> {
     List<Risque> findBySoldePrincipaleRisqueAndIrAndIcAndStadeNot(float soldePrincipaleRisque, float ir, float ic, String stade);
+//    List<Risque> findByDossierDebiteurDossierIdNumCtx(Long numCtx);
+
 }

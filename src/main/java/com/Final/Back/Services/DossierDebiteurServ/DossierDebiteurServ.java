@@ -12,4 +12,5 @@ public interface DossierDebiteurServ {
     DossierDebiteur saveDossierDebiteur(DossierDebiteur dossierDebiteur);
     void deleteDossierDebiteurById(DossierId dossierId);
     Optional<DossierDebiteur> rechercheDossier(Long num) ;
+    void resetSoldeRecouvrement(Long numCtx);
 }

@@ -9,6 +9,5 @@ import java.util.List;
 
 public interface RechercheService {
     DebiteurInfo recherche(Long numCtx);
-
     List<Risque> Risques(Long numCtx);
 }

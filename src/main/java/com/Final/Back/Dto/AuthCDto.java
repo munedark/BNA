@@ -7,7 +7,6 @@ import lombok.Data;
 
 @Data
 public class AuthCDto {
-
     private Client client;
     private Profile profile;
 }
