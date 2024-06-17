@@ -10,5 +10,6 @@ import java.util.List;
 public interface ClientRepo extends JpaRepository<Client,Long> {
     @Override
     List<Client> findAll();
+    Client findByCin(Long cin);
 
 }
